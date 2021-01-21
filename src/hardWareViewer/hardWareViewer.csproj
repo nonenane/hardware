@@ -1,0 +1,673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17D5E250-FC18-4B89-9FAF-DF5CB4BFB77A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>hardWareViewer</RootNamespace>
+    <AssemblyName>hardWareViewer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Data.AdoDotNetInterop, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Enterprise.Viewing.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EPPlus">
+      <HintPath>..\..\..\DLL\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\frameWork_mew\Framework\bin\Debug\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="directoryObject\frmAddObject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryObject\frmAddObject.Designer.cs">
+      <DependentUpon>frmAddObject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="directoryObject\frmDirectoryObject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryObject\frmDirectoryObject.Designer.cs">
+      <DependentUpon>frmDirectoryObject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="inAll\Code39Control.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="directoryHardWareAndComponents\frmAddComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryHardWareAndComponents\frmAddComponents.Designer.cs">
+      <DependentUpon>frmAddComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="directoryHardWareAndComponents\frmAddHardWare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryHardWareAndComponents\frmAddHardWare.Designer.cs">
+      <DependentUpon>frmAddHardWare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="directoryHardWareAndComponents\frmDirectoryHardWareAndComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryHardWareAndComponents\frmDirectoryHardWareAndComponents.Designer.cs">
+      <DependentUpon>frmDirectoryHardWareAndComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="directoryTypeComponents\frmAddTypeComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryTypeComponents\frmAddTypeComponents.Designer.cs">
+      <DependentUpon>frmAddTypeComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="directoryTypeComponents\frmDirectoryTypeComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryTypeComponents\frmDirectoryTypeComponents.Designer.cs">
+      <DependentUpon>frmDirectoryTypeComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="directoryTypeHardWare\frmAddTypeHardWare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryTypeHardWare\frmAddTypeHardWare.Designer.cs">
+      <DependentUpon>frmAddTypeHardWare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="directoryTypeHardWare\frmDirectoryTypeHardWare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryTypeHardWare\frmDirectoryTypeHardWare.Designer.cs">
+      <DependentUpon>frmDirectoryTypeHardWare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="directoryPlaceHardWare\frmAddPlaceHardWare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryPlaceHardWare\frmAddPlaceHardWare.Designer.cs">
+      <DependentUpon>frmAddPlaceHardWare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="directoryPlaceHardWare\frmDirectoryPlaceHardWare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryPlaceHardWare\frmDirectoryPlaceHardWare.Designer.cs">
+      <DependentUpon>frmDirectoryPlaceHardWare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalActWriteOff\frmReasonActWriteOff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalActWriteOff\frmReasonActWriteOff.Designer.cs">
+      <DependentUpon>frmReasonActWriteOff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalActWriteOff\printReport.cs" />
+    <Compile Include="listHardware\frmDeleteComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listHardware\frmDeleteComment.Designer.cs">
+      <DependentUpon>frmDeleteComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="listHardware\frmListHwAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listHardware\frmListHwAdd.Designer.cs">
+      <DependentUpon>frmListHwAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="listHardware\frmListComponents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listHardware\frmListComponents.Designer.cs">
+      <DependentUpon>frmListComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="listHardware\frmListHardware.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listHardware\frmListHardware.Designer.cs">
+      <DependentUpon>frmListHardware.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalActWriteOff\frmViewActWriteOff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalActWriteOff\frmViewActWriteOff.Designer.cs">
+      <DependentUpon>frmViewActWriteOff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalActWriteOff\frmJournalActWriteOff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalActWriteOff\frmJournalActWriteOff.Designer.cs">
+      <DependentUpon>frmJournalActWriteOff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalActInventory\frmAddDateInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalActInventory\frmAddDateInventory.Designer.cs">
+      <DependentUpon>frmAddDateInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalActInventory\frmAddActInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalActInventory\frmAddActInventory.Designer.cs">
+      <DependentUpon>frmAddActInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalActInventory\frmJournalActInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalActInventory\frmJournalActInventory.Designer.cs">
+      <DependentUpon>frmJournalActInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalActReceivingTransfer\frmAddActReceivingTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalActReceivingTransfer\frmAddActReceivingTransfer.Designer.cs">
+      <DependentUpon>frmAddActReceivingTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalActReceivingTransfer\frmJournalActReceivingTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalActReceivingTransfer\frmJournalActReceivingTransfer.Designer.cs">
+      <DependentUpon>frmJournalActReceivingTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="inAll\frmAddComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="inAll\frmAddComment.Designer.cs">
+      <DependentUpon>frmAddComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalEstimates\frmAddComponentInEstimates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalEstimates\frmAddComponentInEstimates.Designer.cs">
+      <DependentUpon>frmAddComponentInEstimates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="directoryResponsible\frmDirectoryResponsible.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="directoryResponsible\frmDirectoryResponsible.Designer.cs">
+      <DependentUpon>frmDirectoryResponsible.cs</DependentUpon>
+    </Compile>
+    <Compile Include="inAll\frmAddDoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="inAll\frmAddDoc.Designer.cs">
+      <DependentUpon>frmAddDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="control\ImagePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="control\ImagePanel.Designer.cs">
+      <DependentUpon>ImagePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalEstimates\frmAddEstimates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalEstimates\frmAddEstimates.Designer.cs">
+      <DependentUpon>frmAddEstimates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="journalEstimates\frmJournalEstimates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalEstimates\frmJournalEstimates.Designer.cs">
+      <DependentUpon>frmJournalEstimates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="listHardware\frmMOLChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listHardware\frmMOLChange.Designer.cs">
+      <DependentUpon>frmMOLChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="listHardware\frmReportHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listHardware\frmReportHistory.Designer.cs">
+      <DependentUpon>frmReportHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="listHardware\reportHistory.cs" />
+    <Compile Include="MovementMaterial\frmAddMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MovementMaterial\frmAddMaterial.Designer.cs">
+      <DependentUpon>frmAddMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MovementMaterial\frmAddMovementMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MovementMaterial\frmAddMovementMaterial.Designer.cs">
+      <DependentUpon>frmAddMovementMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="readSQL.cs" />
+    <Compile Include="reports\balanceReport\balanceReport.cs" />
+    <Compile Include="reports\estimateReport\estimateReport.cs" />
+    <Compile Include="reports\memoReport\frmMemoReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reports\memoReport\frmMemoReport.Designer.cs">
+      <DependentUpon>frmMemoReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reports\memoReport\memoCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>memoCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="reports\memoReport\memoReport.cs">
+      <DependentUpon>memoReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="reports\memoReport\memoReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>memoReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="reports\objectReport\objectReport.cs" />
+    <Compile Include="scaners\frmContScaner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scaners\frmContScaner.Designer.cs">
+      <DependentUpon>frmContScaner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="scaners\frmListScaners.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scaners\frmListScaners.Designer.cs">
+      <DependentUpon>frmListScaners.cs</DependentUpon>
+    </Compile>
+    <Compile Include="scaners\frmMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scaners\frmMsg.Designer.cs">
+      <DependentUpon>frmMsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="scaners\frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scaners\frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="scaners\frmWahKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scaners\frmWahKey.Designer.cs">
+      <DependentUpon>frmWahKey.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="directoryHardWareAndComponents\frmAddComponents.resx">
+      <DependentUpon>frmAddComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryHardWareAndComponents\frmAddHardWare.resx">
+      <DependentUpon>frmAddHardWare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryHardWareAndComponents\frmDirectoryHardWareAndComponents.resx">
+      <DependentUpon>frmDirectoryHardWareAndComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryObject\frmAddObject.resx">
+      <DependentUpon>frmAddObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryObject\frmDirectoryObject.resx">
+      <DependentUpon>frmDirectoryObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryResponsible\frmDirectoryResponsible.resx">
+      <DependentUpon>frmDirectoryResponsible.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryTypeComponents\frmAddTypeComponents.resx">
+      <DependentUpon>frmAddTypeComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryTypeComponents\frmDirectoryTypeComponents.resx">
+      <DependentUpon>frmDirectoryTypeComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryTypeHardWare\frmAddTypeHardWare.resx">
+      <DependentUpon>frmAddTypeHardWare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryTypeHardWare\frmDirectoryTypeHardWare.resx">
+      <DependentUpon>frmDirectoryTypeHardWare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryPlaceHardWare\frmAddPlaceHardWare.resx">
+      <DependentUpon>frmAddPlaceHardWare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="directoryPlaceHardWare\frmDirectoryPlaceHardWare.resx">
+      <DependentUpon>frmDirectoryPlaceHardWare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalActWriteOff\frmReasonActWriteOff.resx">
+      <DependentUpon>frmReasonActWriteOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listHardware\frmDeleteComment.resx">
+      <DependentUpon>frmDeleteComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listHardware\frmListHwAdd.resx">
+      <DependentUpon>frmListHwAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listHardware\frmListComponents.resx">
+      <DependentUpon>frmListComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listHardware\frmListHardware.resx">
+      <DependentUpon>frmListHardware.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="inAll\frmAddComment.resx">
+      <DependentUpon>frmAddComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalActInventory\frmAddActInventory.resx">
+      <DependentUpon>frmAddActInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalActInventory\frmAddDateInventory.resx">
+      <DependentUpon>frmAddDateInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalActInventory\frmJournalActInventory.resx">
+      <DependentUpon>frmJournalActInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalActReceivingTransfer\frmAddActReceivingTransfer.resx">
+      <DependentUpon>frmAddActReceivingTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalActReceivingTransfer\frmJournalActReceivingTransfer.resx">
+      <DependentUpon>frmJournalActReceivingTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalActWriteOff\frmViewActWriteOff.resx">
+      <DependentUpon>frmViewActWriteOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalActWriteOff\frmJournalActWriteOff.resx">
+      <DependentUpon>frmJournalActWriteOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalEstimates\frmAddComponentInEstimates.resx">
+      <DependentUpon>frmAddComponentInEstimates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="inAll\frmAddDoc.resx">
+      <DependentUpon>frmAddDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalEstimates\frmAddEstimates.resx">
+      <DependentUpon>frmAddEstimates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalEstimates\frmJournalEstimates.resx">
+      <DependentUpon>frmJournalEstimates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listHardware\frmMOLChange.resx">
+      <DependentUpon>frmMOLChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listHardware\frmReportHistory.resx">
+      <DependentUpon>frmReportHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MovementMaterial\frmAddMaterial.resx">
+      <DependentUpon>frmAddMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MovementMaterial\frmAddMovementMaterial.resx">
+      <DependentUpon>frmAddMovementMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reports\memoReport\frmMemoReport.resx">
+      <DependentUpon>frmMemoReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reports\memoReport\memoCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>memoCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scaners\frmContScaner.resx">
+      <DependentUpon>frmContScaner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scaners\frmListScaners.resx">
+      <DependentUpon>frmListScaners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scaners\frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scaners\frmWahKey.resx">
+      <DependentUpon>frmWahKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="reports\memoReport\memoReport.xsc">
+      <DependentUpon>memoReport.xsd</DependentUpon>
+    </None>
+    <None Include="reports\memoReport\memoReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>memoReport.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="reports\memoReport\memoReport.xss">
+      <DependentUpon>memoReport.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\document_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-library.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\door_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye_quick_view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter_data.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gtk-print-report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\old-edit-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove-ticket1-.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\svn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trashcan-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoomin-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoomout-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Internet-explorer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Scanner2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\old-edit-undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\old-edit-redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x-office-spreadsheet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload_8055.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="CrystalPrintControlLib">
+      <Guid>{62862E3F-F35B-455E-9459-49EAADE80A25}</Guid>
+      <VersionMajor>13</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconBlind.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconPrint.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconX.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-excel-o.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-o.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-excel-o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-excel-o1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-o1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-o2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_excel_o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\выдать сканер.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\принять сканер.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\список сканеров.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\настройки.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WindowsAPICodePack">
+      <Version>1.1.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
