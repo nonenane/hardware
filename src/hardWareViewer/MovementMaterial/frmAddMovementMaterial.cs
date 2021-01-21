@@ -18,6 +18,7 @@ namespace hardWareViewer.MovementMaterial
         public frmAddMovementMaterial()
         {
             InitializeComponent();
+            dgvData.AutoGenerateColumns = false;
             id = -1;
         }
 
@@ -33,6 +34,9 @@ namespace hardWareViewer.MovementMaterial
             cmbTypeBasic.DataSource = dtTypeBasic;
             cmbTypeBasic.DisplayMember = "cName";
             cmbTypeBasic.ValueMember = "id";
+
+            dtData = readSQL.GetMovementMaterial(id);
+            dgvData.DataSource = dtData;
 
             if (id != -1)
             { 
@@ -142,5 +146,52 @@ namespace hardWareViewer.MovementMaterial
         {
             isEditData = true;
         }
+
+        public void InsertMovementMaterial(int id_Responsible,decimal Count,string cName,string nameMaterial,int id_Material,string Comment,string nameUnit)
+        {
+            if (dtData != null)
+            {
+                DataRow rowNew = dtData.NewRow();
+                rowNew["id"] = -1;
+                rowNew["id_Responsible"] = id_Responsible;
+                rowNew["Count"] = Count;
+                rowNew["cName"] = cName;
+                rowNew["nameMaterial"] = nameMaterial;
+                rowNew["id_Material"] = id_Material;
+                rowNew["Comment"] = Comment;
+                rowNew["nameUnit"] = nameUnit;
+
+                dtData.Rows.Add(rowNew);
+                dtData.AcceptChanges();
+            }
+        }
+
+        public void UpdateMovementMaterial(int id_Responsible, decimal Count, string cName, string nameMaterial, int id_Material, string Comment, string nameUnit)
+        {
+            if (dtData != null)
+            {
+                DataRowView rowNew = dtData.DefaultView[dgvData.CurrentRow.Index];                
+                rowNew["id_Responsible"] = id_Responsible;
+                rowNew["Count"] = Count;
+                rowNew["cName"] = cName;
+                rowNew["nameMaterial"] = nameMaterial;
+                rowNew["id_Material"] = id_Material;
+                rowNew["Comment"] = Comment;
+                rowNew["nameUnit"] = nameUnit;
+                
+                dtData.AcceptChanges();
+            }
+        }
+
+        private void btAdd_Click(object sender, EventArgs e)
+        {
+            new MovementMaterial.frmAddMaterial() { id_tMovementMaterial = id, Owner = this,Text = "Добавить расходный материал" }.ShowDialog();
+            }
+
+        private void btEdit_Click(object sender, EventArgs e)
+        {
+            DataRowView row = dtData.DefaultView[dgvData.CurrentRow.Index];
+            new MovementMaterial.frmAddMaterial() { id_tMovementMaterial = id, Owner = this, row = row,Text= "Редактировать расходный материал" }.ShowDialog();
+            }
     }
 }

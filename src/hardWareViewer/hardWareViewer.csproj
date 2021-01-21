@@ -275,6 +275,18 @@
       <DependentUpon>frmReportHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="listHardware\reportHistory.cs" />
+    <Compile Include="Material\frmAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Material\frmAdd.Designer.cs">
+      <DependentUpon>frmAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material\frmList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Material\frmList.Designer.cs">
+      <DependentUpon>frmList.cs</DependentUpon>
+    </Compile>
     <Compile Include="MovementMaterial\frmAddMaterial.cs">
       <SubType>Form</SubType>
     </Compile>

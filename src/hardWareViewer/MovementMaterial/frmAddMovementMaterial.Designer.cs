@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btSave = new System.Windows.Forms.Button();
             this.btClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,25 +36,25 @@
             this.cmbTypeOperation = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbTypeBasic = new System.Windows.Forms.ComboBox();
             this.tbNumberBase = new System.Windows.Forms.TextBox();
             this.dtpYear = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dgvData = new System.Windows.Forms.DataGridView();
+            this.tbComment = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btAdd = new System.Windows.Forms.Button();
+            this.btEdit = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.cMol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbComment = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.cmbTypeBasic = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
@@ -133,6 +133,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "На основании";
             // 
+            // cmbTypeBasic
+            // 
+            this.cmbTypeBasic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTypeBasic.FormattingEnabled = true;
+            this.cmbTypeBasic.Location = new System.Drawing.Point(129, 59);
+            this.cmbTypeBasic.Name = "cmbTypeBasic";
+            this.cmbTypeBasic.Size = new System.Drawing.Size(137, 21);
+            this.cmbTypeBasic.TabIndex = 18;
+            this.cmbTypeBasic.SelectionChangeCommitted += new System.EventHandler(this.cmbTypeOperation_SelectionChangeCommitted);
+            // 
             // tbNumberBase
             // 
             this.tbNumberBase.Location = new System.Drawing.Point(129, 35);
@@ -153,6 +163,15 @@
             this.dtpYear.Size = new System.Drawing.Size(80, 20);
             this.dtpYear.TabIndex = 13;
             this.dtpYear.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(19, 63);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Признак";
             // 
             // label5
             // 
@@ -185,14 +204,14 @@
             this.dgvData.AllowUserToDeleteRows = false;
             this.dgvData.AllowUserToResizeRows = false;
             this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cMol,
@@ -207,30 +226,6 @@
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(554, 150);
             this.dgvData.TabIndex = 16;
-            // 
-            // cMol
-            // 
-            this.cMol.HeaderText = "МОЛ";
-            this.cMol.Name = "cMol";
-            this.cMol.ReadOnly = true;
-            // 
-            // cName
-            // 
-            this.cName.HeaderText = "Наименование";
-            this.cName.Name = "cName";
-            this.cName.ReadOnly = true;
-            // 
-            // cCount
-            // 
-            this.cCount.HeaderText = "Количество";
-            this.cCount.Name = "cCount";
-            this.cCount.ReadOnly = true;
-            // 
-            // cComment
-            // 
-            this.cComment.HeaderText = "Комментарий";
-            this.cComment.Name = "cComment";
-            this.cComment.ReadOnly = true;
             // 
             // tbComment
             // 
@@ -250,23 +245,25 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Комментарий";
             // 
-            // button1
+            // btAdd
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(458, 293);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 32);
-            this.button1.TabIndex = 17;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btAdd.Location = new System.Drawing.Point(458, 293);
+            this.btAdd.Name = "btAdd";
+            this.btAdd.Size = new System.Drawing.Size(32, 32);
+            this.btAdd.TabIndex = 17;
+            this.btAdd.UseVisualStyleBackColor = true;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
-            // button2
+            // btEdit
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(496, 293);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 32);
-            this.button2.TabIndex = 17;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btEdit.Location = new System.Drawing.Point(496, 293);
+            this.btEdit.Name = "btEdit";
+            this.btEdit.Size = new System.Drawing.Size(32, 32);
+            this.btEdit.TabIndex = 17;
+            this.btEdit.UseVisualStyleBackColor = true;
+            this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
             // 
             // button3
             // 
@@ -291,24 +288,33 @@
             this.textBox5.Size = new System.Drawing.Size(100, 20);
             this.textBox5.TabIndex = 14;
             // 
-            // cmbTypeBasic
+            // cMol
             // 
-            this.cmbTypeBasic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTypeBasic.FormattingEnabled = true;
-            this.cmbTypeBasic.Location = new System.Drawing.Point(129, 59);
-            this.cmbTypeBasic.Name = "cmbTypeBasic";
-            this.cmbTypeBasic.Size = new System.Drawing.Size(137, 21);
-            this.cmbTypeBasic.TabIndex = 18;
-            this.cmbTypeBasic.SelectionChangeCommitted += new System.EventHandler(this.cmbTypeOperation_SelectionChangeCommitted);
+            this.cMol.DataPropertyName = "cName";
+            this.cMol.HeaderText = "МОЛ";
+            this.cMol.Name = "cMol";
+            this.cMol.ReadOnly = true;
             // 
-            // label6
+            // cName
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 63);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Признак";
+            this.cName.DataPropertyName = "nameMaterial";
+            this.cName.HeaderText = "Наименование";
+            this.cName.Name = "cName";
+            this.cName.ReadOnly = true;
+            // 
+            // cCount
+            // 
+            this.cCount.DataPropertyName = "Count";
+            this.cCount.HeaderText = "Количество";
+            this.cCount.Name = "cCount";
+            this.cCount.ReadOnly = true;
+            // 
+            // cComment
+            // 
+            this.cComment.DataPropertyName = "Comment";
+            this.cComment.HeaderText = "Комментарий";
+            this.cComment.Name = "cComment";
+            this.cComment.ReadOnly = true;
             // 
             // frmAddMovementMaterial
             // 
@@ -316,8 +322,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 411);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btEdit);
+            this.Controls.Add(this.btAdd);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cmbTypeOperation);
@@ -362,16 +368,16 @@
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.TextBox tbComment;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cMol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cComment;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btAdd;
+        private System.Windows.Forms.Button btEdit;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.ComboBox cmbTypeBasic;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cMol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cComment;
     }
 }

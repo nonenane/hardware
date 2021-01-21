@@ -1233,7 +1233,6 @@ namespace hardWareViewer
             return dtResult;
         }
 
-
         public static DataTable SetTMovementMaterial(int id, DateTime DateMovement,int id_TypeOperation,DateTime YearBasis, string NumberBase,int idBasis,string Comment)
         {
             ap.Clear();
@@ -1267,7 +1266,6 @@ namespace hardWareViewer
                  new DbType[3] { DbType.Int32, DbType.Date, DbType.Int32 }, ap);
         }
 
-
         public static DataTable SetMovementMaterial(int id, int id_tMovementMaterial, int id_Material, decimal Count, int id_Responsible, string Comment)
         {
             ap.Clear();
@@ -1281,6 +1279,15 @@ namespace hardWareViewer
             return sql.executeProcedure("[hardware].[SetMovementMaterial]",
                  new string[7] { "@id", "@id_tMovementMaterial", "@id_Material", "@Count", "@id_Responsible", "@Comment", "@id_user" },
                  new DbType[7] { DbType.Int32, DbType.Int32, DbType.Int32, DbType.Decimal, DbType.Int32, DbType.String, DbType.Int32 }, ap);
+        }
+
+        public static DataTable GetMovementMaterial(int id_tMovementMaterial)
+        {
+            ap.Clear();
+            ap.Add(id_tMovementMaterial);
+            return sql.executeProcedure("[hardware].[GetMovementMaterial]",
+                 new string[1] { "@id_tMovementMaterial"},
+                 new DbType[1] { DbType.Int32}, ap);
         }
 
 

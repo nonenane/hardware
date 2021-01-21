@@ -179,7 +179,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btSave);
             this.Controls.Add(this.btClose);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmAddMaterial";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAddMaterial";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddMaterial_FormClosing);
             this.Load += new System.EventHandler(this.frmAddMaterial_Load);

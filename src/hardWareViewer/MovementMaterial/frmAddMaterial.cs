@@ -17,6 +17,10 @@ namespace hardWareViewer.MovementMaterial
         public int id_tMovementMaterial { set; private get; }
         private int id_Material;
         private bool isEditData;
+
+        public DataRowView row { set; private get; }
+
+        frmAddMovementMaterial frmOwer;
         public frmAddMaterial()
         {
             InitializeComponent();
@@ -27,15 +31,22 @@ namespace hardWareViewer.MovementMaterial
 
         private void frmAddMaterial_Load(object sender, EventArgs e)
         {
+            frmOwer = (frmAddMovementMaterial)Owner;
             DataTable dtMol = readSQL.GetActiveMOL(false);
             cmbMOL.DataSource = dtMol;
             cmbMOL.DisplayMember = "cName";
             cmbMOL.ValueMember = "id";
             cmbMOL.SelectedIndex = -1;
 
-            if (id != -1)
-            { 
-            
+            if (row != null)
+            {
+                id = (int)row["id"];
+                id_Material = (int)row["id_Material"];
+                tbMaterial.Text = (string)row["nameMaterial"];
+                tbUnit.Text = (string)row["nameUnit"];
+                tbCount.Text = ((decimal)row["Count"]).ToString("0.000");
+                cmbMOL.SelectedValue = (int)row["id_Responsible"];
+                tbComment.Text = (string)row["Comment"];
             }
             isEditData = false;
         }
@@ -61,6 +72,7 @@ namespace hardWareViewer.MovementMaterial
         {
             tbUnit.Text = "Шт.";
             id_Material = 1;
+            tbMaterial.Text = "Губка";
             isEditData = true;
         }
 
@@ -107,30 +119,57 @@ namespace hardWareViewer.MovementMaterial
                 return;
             }
 
+            if(Count==0)
+            {
+                MessageBox.Show(config.centralText($"Необходимо заполнить\n \"{label3.Text}\"\n"), "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbCount.Focus();
+                return;
+            }
+
+            if (id_Material == -1)
+            {
+                MessageBox.Show(config.centralText($"Необходимо выбрать\n \"{label1.Text}\"\n"), "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btSelect.Focus();
+                return;
+            }
 
             //decimal Count = decimal.Parse(tbCount.Text);
             int id_Responsible = (int)cmbMOL.SelectedValue;
             string Comment = tbComment.Text;
-
-            DataTable dtResult = readSQL.SetMovementMaterial(id, id_tMovementMaterial, id_Material, Count, id_Responsible, Comment);
-            if (dtResult == null || dtResult.Rows.Count == 0)
+            if (row == null)
+                frmOwer.InsertMovementMaterial(id_Responsible, Count, cmbMOL.Text, tbMaterial.Text, id_Material, tbComment.Text, tbUnit.Text);
+            else
             {
-                MessageBox.Show("Не удалось сохранить данные", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                frmOwer.UpdateMovementMaterial(id_Responsible, Count, cmbMOL.Text, tbMaterial.Text, id_Material, tbComment.Text, tbUnit.Text);
+
+                //row["id_Material"] = id_Material;
+                //row["nameMaterial"] = tbMaterial.Text;
+                //row["nameUnit"] = tbUnit.Text ;
+                //row["Count"] = Count;
+                //row["id_Responsible"] = (int)cmbMOL.SelectedValue;
+                //row["Comment"] = tbComment.Text;
+                //row["cName"] = cmbMOL.Text;
             }
 
+            //DataTable dtResult = readSQL.SetMovementMaterial(id, id_tMovementMaterial, id_Material, Count, id_Responsible, Comment);
+            //if (dtResult == null || dtResult.Rows.Count == 0)
+            //{
+            //    MessageBox.Show("Не удалось сохранить данные", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
 
-            if ((int)dtResult.Rows[0]["id"] == -1)
-            {
-                MessageBox.Show(config.centralText($"{dtResult.Rows[0]["msg"].ToString().Replace("\\n", "\n")}"), "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
-            if ((int)dtResult.Rows[0]["id"] == -9999)
-            {
-                MessageBox.Show($"{dtResult.Rows[0]["msg"]}", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            //if ((int)dtResult.Rows[0]["id"] == -1)
+            //{
+            //    MessageBox.Show(config.centralText($"{dtResult.Rows[0]["msg"].ToString().Replace("\\n", "\n")}"), "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+
+            //if ((int)dtResult.Rows[0]["id"] == -9999)
+            //{
+            //    MessageBox.Show($"{dtResult.Rows[0]["msg"]}", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
 
             isEditData = false;
             MessageBox.Show("Данные сохранены.", "Сохранение данных", MessageBoxButtons.OK, MessageBoxIcon.Information);

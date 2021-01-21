@@ -32,7 +32,7 @@ namespace hardWareViewer
                     config.userName = Nwuram.Framework.Settings.User.UserSettings.User.FullUsername;
                     config.statusCode = Nwuram.Framework.Settings.User.UserSettings.User.StatusCode.ToLower();
 
-                    Application.Run(new MovementMaterial.frmAddMaterial());
+                    Application.Run(new MovementMaterial.frmAddMovementMaterial());
                     //Application.Run(new frmMain());
                     
                     Logging.StartFirstLevel(2);
