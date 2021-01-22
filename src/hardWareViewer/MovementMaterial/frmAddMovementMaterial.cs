@@ -11,10 +11,13 @@ namespace hardWareViewer.MovementMaterial
 {
     public partial class frmAddMovementMaterial : Form
     {
-        public int id { set; private get; }
 
+        public DataRowView row { set; private get; }
+
+        private int id;
         private bool isEditData = false;
         private DataTable dtData = new DataTable();
+        private List<int> listToDel = new List<int>();
         public frmAddMovementMaterial()
         {
             InitializeComponent();
@@ -24,6 +27,7 @@ namespace hardWareViewer.MovementMaterial
 
         private void frmAddMovementMaterial_Load(object sender, EventArgs e)
         {
+            listToDel = new List<int>();
             DataTable dtTypeOperation = readSQL.GetTypeOperation(false);
             cmbTypeOperation.DataSource = dtTypeOperation;
             cmbTypeOperation.DisplayMember = "cName";
@@ -35,14 +39,21 @@ namespace hardWareViewer.MovementMaterial
             cmbTypeBasic.DisplayMember = "cName";
             cmbTypeBasic.ValueMember = "id";
 
-            dtData = readSQL.GetMovementMaterial(id);
-            dgvData.DataSource = dtData;
+           
 
-            if (id != -1)
-            { 
-            
-
+            if (row!=null)
+            {
+                id = (int)row["id"];
+                cmbTypeOperation.SelectedValue = (int)row["id_TypeOperation"];
+                cmbTypeBasic.SelectedValue = (int)row["idBasis"];
+                dtpDate.Value = (DateTime)row["DateMovement"];
+                dtpYear.Value = (DateTime)row["YearBasis"];
+                tbNumberBase.Text = (string)row["NumberBase"];
+                tbComment.Text = (string)row["Comment"];
             }
+            dtData = readSQL.GetMovementMaterial(id);
+            setFilter();
+            dgvData.DataSource = dtData;
 
             isEditData = false;
         }
@@ -74,11 +85,11 @@ namespace hardWareViewer.MovementMaterial
                 return;
             }
 
-            //if (dtData == null || dtData.Rows.Count == 0)
-            //{
-            //    MessageBox.Show(config.centralText("Отсутствуют записи\nо движении расходных материалов.\nСохранение невозможно.\n"), "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
+            if (dtData == null || dtData.Rows.Count == 0)
+            {
+                MessageBox.Show(config.centralText("Отсутствуют записи\nо движении расходных материалов.\nСохранение невозможно.\n"), "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             DateTime DateMovement = dtpDate.Value.Date;
             int id_TypeOperation = (int)cmbTypeOperation.SelectedValue;
@@ -110,8 +121,7 @@ namespace hardWareViewer.MovementMaterial
 
 
             if ((int)dtResult.Rows[0]["id"] == -1)
-            {
-                //MessageBox.Show("В справочнике уже присутствует запись с таким наименованием.", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {                
                 MessageBox.Show(config.centralText($"{dtResult.Rows[0]["msg"].ToString().Replace("\\n", "\n")}"), "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -121,6 +131,46 @@ namespace hardWareViewer.MovementMaterial
                 MessageBox.Show($"{dtResult.Rows[0]["msg"]}", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            id = (int)dtResult.Rows[0]["id"];
+            int id_tMovementMaterial = id;
+
+            foreach (int delId in listToDel)
+            {
+                readSQL.DelMovementMaterial(delId).Wait();
+            }
+
+            foreach (DataRow row in dtData.Rows)
+            {
+                int id_MovementMaterial = (int)row["id"];
+                
+                int id_Material = (int)row["id_Material"];
+                decimal Count = (decimal)row["Count"];
+                int id_Responsible = (int)row["id_Responsible"];
+                string _Comment = (string)row["Comment"];
+
+
+                dtResult = readSQL.SetMovementMaterial(id_MovementMaterial, id_tMovementMaterial, id_Material, Count, id_Responsible, _Comment);
+                if (dtResult == null || dtResult.Rows.Count == 0)
+                {
+                    MessageBox.Show("Не удалось сохранить данные", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //return;
+                }
+
+
+                if ((int)dtResult.Rows[0]["id"] == -1)
+                {
+                    MessageBox.Show(config.centralText($"{dtResult.Rows[0]["msg"].ToString().Replace("\\n", "\n")}"), "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //return;
+                }
+
+                if ((int)dtResult.Rows[0]["id"] == -9999)
+                {
+                    MessageBox.Show($"{dtResult.Rows[0]["msg"]}", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //return;
+                }
+            }
+
+
 
             isEditData = false;
             MessageBox.Show("Данные сохранены.", "Сохранение данных", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -163,6 +213,7 @@ namespace hardWareViewer.MovementMaterial
 
                 dtData.Rows.Add(rowNew);
                 dtData.AcceptChanges();
+                setFilter();
             }
         }
 
@@ -180,18 +231,111 @@ namespace hardWareViewer.MovementMaterial
                 rowNew["nameUnit"] = nameUnit;
                 
                 dtData.AcceptChanges();
+                setFilter();
+            }
+        }
+
+        private void setFilter()
+        {
+            if (dtData == null || dtData.Rows.Count == 0)
+            {
+                btEdit.Enabled = btDel.Enabled = false;
+                return;
+            }
+
+            try
+            {
+                string filter = "";
+
+                if (tbFilterName.Text.Trim().Length != 0)
+                    filter += (filter.Length == 0 ? "" : " and ") + $"nameMaterial like '%{tbFilterName.Text.Trim()}%'";
+
+                if (tbFilterMol.Text.Trim().Length != 0)
+                    filter += (filter.Length == 0 ? "" : " and ") + $"cName like '%{tbFilterMol.Text.Trim()}%'";
+
+                if (tbFilterComment.Text.Trim().Length != 0)
+                    filter += (filter.Length == 0 ? "" : " and ") + $"Comment like '%{tbFilterComment.Text.Trim()}%'";
+
+                dtData.DefaultView.RowFilter = filter;
+            }
+            catch
+            {
+                dtData.DefaultView.RowFilter = "id = -1";
+            }
+            finally
+            {
+                btEdit.Enabled = btDel.Enabled =
+                dtData.DefaultView.Count != 0;                
             }
         }
 
         private void btAdd_Click(object sender, EventArgs e)
         {
-            new MovementMaterial.frmAddMaterial() { id_tMovementMaterial = id, Owner = this,Text = "Добавить расходный материал" }.ShowDialog();
-            }
+            new MovementMaterial.frmAddMaterial() { id_tMovementMaterial = id, Owner = this, Text = "Добавить расходный материал" }.ShowDialog();
+        }
 
         private void btEdit_Click(object sender, EventArgs e)
         {
+            if (dtData == null) return;
+            if (dtData.DefaultView.Count==0) return;
+
             DataRowView row = dtData.DefaultView[dgvData.CurrentRow.Index];
-            new MovementMaterial.frmAddMaterial() { id_tMovementMaterial = id, Owner = this, row = row,Text= "Редактировать расходный материал" }.ShowDialog();
+            new MovementMaterial.frmAddMaterial() { id_tMovementMaterial = id, Owner = this, row = row, Text = "Редактировать расходный материал" }.ShowDialog();
+
+        }
+
+
+        private void btDel_Click(object sender, EventArgs e)
+        {
+            if (dtData == null) return;
+            if (dtData.DefaultView.Count == 0) return;
+            
+            if (MessageBox.Show("Удалить запись?","Запрос на удаление",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                DataRowView row = dtData.DefaultView[dgvData.CurrentRow.Index];
+                if ((int)row["id"] > 0)
+                {
+                    listToDel.Add((int)row["id"]);
+                }
+                row.Delete();
+                dtData.AcceptChanges();
+                setFilter();
             }
+        }
+
+        private void dgvData_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            int width = 0;
+            foreach (DataGridViewColumn col in dgvData.Columns)
+            {
+                if (!col.Visible) continue;
+
+                if (col.Name.Equals(cMol.Name))
+                {
+                    tbFilterMol.Location = new Point(dgvData.Location.X + 1 + width, tbFilterMol.Location.Y);
+                    tbFilterMol.Size = new Size(col.Width, tbFilterMol.Height);
+                }
+                else
+                if (col.Name.Equals(cName.Name))
+                {
+                    tbFilterName.Location = new Point(dgvData.Location.X + 1 + width, tbFilterMol.Location.Y);
+                    tbFilterName.Size = new Size(col.Width, tbFilterMol.Height);
+                }
+                else
+                if (col.Name.Equals(cComment.Name))
+                {
+                    tbFilterComment.Location = new Point(dgvData.Location.X + 1 + width, tbFilterMol.Location.Y);
+                    tbFilterComment.Size = new Size(col.Width, tbFilterMol.Height);
+                }
+
+                width += col.Width;
+
+            }
+        }
+
+        private void tbFilterMol_TextChanged(object sender, EventArgs e)
+        {
+            setFilter();
+        }
     }
 }

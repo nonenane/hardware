@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btSave = new System.Windows.Forms.Button();
             this.btClose = new System.Windows.Forms.Button();
             this.cmbMOL = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tbMaterial = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label3 = new System.Windows.Forms.Label();
             this.tbCount = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbComment = new System.Windows.Forms.TextBox();
             this.tbUnit = new System.Windows.Forms.TextBox();
             this.btSelect = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btSave
@@ -51,6 +52,7 @@
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(32, 32);
             this.btSave.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.btSave, "Сохранить");
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
@@ -62,6 +64,7 @@
             this.btClose.Name = "btClose";
             this.btClose.Size = new System.Drawing.Size(32, 32);
             this.btClose.TabIndex = 13;
+            this.toolTip1.SetToolTip(this.btClose, "Выход");
             this.btClose.UseVisualStyleBackColor = true;
             this.btClose.Click += new System.EventHandler(this.btClose_Click);
             // 
@@ -100,10 +103,6 @@
             this.label1.Size = new System.Drawing.Size(115, 13);
             this.label1.TabIndex = 15;
             this.label1.Text = "Расходный материал";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // label3
             // 
@@ -165,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 294);
+            this.ClientSize = new System.Drawing.Size(438, 290);
             this.ControlBox = false;
             this.Controls.Add(this.btSelect);
             this.Controls.Add(this.tbComment);
@@ -202,12 +201,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbMaterial;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbCount;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbComment;
         private System.Windows.Forms.TextBox tbUnit;
         private System.Windows.Forms.Button btSelect;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

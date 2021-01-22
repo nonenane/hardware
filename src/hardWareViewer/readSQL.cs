@@ -5,6 +5,8 @@ using Nwuram.Framework.Settings.Connection;
 using System.Data;
 using System;
 using Nwuram.Framework.Settings.User;
+using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace hardWareViewer
 {
@@ -29,17 +31,18 @@ namespace hardWareViewer
                  new DbType[] { }, ap);
         }
 
-        public static DataTable setLocation(int id, string cName, int type, bool isActive)
+        public static DataTable setLocation(int id, string cName, int id_object, int type, bool isActive)
         {
             ap.Clear();
             ap.Add(id);
             ap.Add(cName);
+            ap.Add(id_object);
             ap.Add(type);
             ap.Add(isActive);
             ap.Add(Nwuram.Framework.Settings.User.UserSettings.User.Id);
             return sql.executeProcedure("[hardware].[setLocation]",
-                 new string[] { "@id", "@cName", "@type", "@isActive", "@idUser" },
-                 new DbType[] { DbType.Int32, DbType.String, DbType.Int32, DbType.Boolean, DbType.Int32 }, ap);
+                 new string[] { "@id", "@cName", "@id_object", "@type", "@isActive", "@idUser" },
+                 new DbType[] { DbType.Int32, DbType.String, DbType.Int32, DbType.Int32, DbType.Boolean, DbType.Int32 }, ap);
         }
         #endregion
 
@@ -1107,6 +1110,49 @@ namespace hardWareViewer
 
         #region "Расходные материалы"
 
+        public static DataTable getObject(bool withAllDeps = false)
+        {
+            ap.Clear();
+
+            DataTable dtResult = sql.executeProcedure("[hardware].[getObject]",
+                 new string[0] { },
+                 new DbType[0] { }, ap);
+
+            if (withAllDeps)
+            {
+                if (dtResult != null)
+                {
+                    if (!dtResult.Columns.Contains("isMain"))
+                    {
+                        DataColumn col = new DataColumn("isMain", typeof(int));
+                        col.DefaultValue = 1;
+                        dtResult.Columns.Add(col);
+                        dtResult.AcceptChanges();
+                    }
+
+                    DataRow row = dtResult.NewRow();
+
+                    row["cName"] = "Все типы";
+                    row["id"] = 0;
+                    row["isMain"] = 0;
+                    row["isActive"] = true;
+                    dtResult.Rows.Add(row);
+                    dtResult.AcceptChanges();
+                    dtResult.DefaultView.RowFilter = "isActive = 1";
+                    dtResult.DefaultView.Sort = "isMain asc, id asc";
+                    dtResult = dtResult.DefaultView.ToTable().Copy();
+                }
+            }
+            else
+            {
+                dtResult.DefaultView.RowFilter = "isActive = 1";
+                dtResult.DefaultView.Sort = "id asc";
+                dtResult = dtResult.DefaultView.ToTable().Copy();
+            }
+
+            return dtResult;
+        }
+
         public static DataTable GetTypeOperation(bool withAllDeps = false)
         {
             ap.Clear();
@@ -1132,6 +1178,7 @@ namespace hardWareViewer
                     row["cName"] = "Все типы";
                     row["id"] = 0;
                     row["isMain"] = 0;
+                    row["isActive"] = true;
                     dtResult.Rows.Add(row);
                     dtResult.AcceptChanges();
                     dtResult.DefaultView.RowFilter = "isActive = 1";
@@ -1290,6 +1337,134 @@ namespace hardWareViewer
                  new DbType[1] { DbType.Int32}, ap);
         }
 
+        public static async Task DelMovementMaterial(int id)
+        {
+            ap.Clear();
+            ap.Add(id);
+            sql.executeProcedure("[hardware].[DelMovementMaterial]",
+                 new string[1] { "@id" },
+                 new DbType[1] { DbType.Int32 }, ap);
+        }
+
+        public static DataTable GetTMovementMaterial(DateTime dateStart, DateTime dateEnd)
+        {
+            ap.Clear();
+            ap.Add(dateStart);
+            ap.Add(dateEnd);
+
+            return sql.executeProcedure("[hardware].[GetTMovementMaterial]",
+                 new string[2] {"@dateStart", "@dateEnd" },
+                 new DbType[2] {DbType.Date,DbType.Date }, ap);
+        }
+
+        public static DataTable DelTMovementMaterial(int id, int result)
+        {
+            ap.Clear();
+            ap.Add(id);
+            ap.Add(result);
+
+           return sql.executeProcedure("[hardware].[DelTMovementMaterial]",
+                 new string[2] { "@id", "@result" },
+                 new DbType[2] { DbType.Int32, DbType.Int32 }, ap);
+        }
+
+        #region "Материалы"
+        public static async Task<DataTable> GetMaterial()
+        {
+            ap.Clear();
+
+            return sql.executeProcedure("[hardware].[GetMaterial]",
+                 new string[0] { },
+                 new DbType[0] { }, ap);
+        }
+
+        public static async Task<DataTable> GetUnits(bool withAllDeps = false)
+        {
+            ap.Clear();
+
+            DataTable dtResult = sql.executeProcedure("[hardware].[GetUnits]",
+                 new string[0] { },
+                 new DbType[0] { }, ap);
+
+            if (withAllDeps)
+            {
+                if (dtResult != null)
+                {
+                    if (!dtResult.Columns.Contains("isMain"))
+                    {
+                        DataColumn col = new DataColumn("isMain", typeof(int));
+                        col.DefaultValue = 1;
+                        dtResult.Columns.Add(col);
+                        dtResult.AcceptChanges();
+                    }
+
+                    DataRow row = dtResult.NewRow();
+
+                    row["cName"] = "Все";
+                    row["id"] = 0;
+                    row["isMain"] = 0;
+                    dtResult.Rows.Add(row);
+                    dtResult.AcceptChanges();
+                    dtResult.DefaultView.RowFilter = "isActive = 1";
+                    dtResult.DefaultView.Sort = "isMain asc, id asc";
+                    dtResult = dtResult.DefaultView.ToTable().Copy();
+                }
+            }
+            else
+            {
+                dtResult.DefaultView.RowFilter = "isActive = 1";
+                dtResult.DefaultView.Sort = "id asc";
+                dtResult = dtResult.DefaultView.ToTable().Copy();
+            }
+
+            return dtResult;
+        }
+
+        public static async Task<DataTable> SetMaterial(int id, string cName, int id_unit, bool isActive, int result, bool isDel)
+        {
+            ap.Clear();
+
+            ap.Add(id);
+            ap.Add(cName);
+            ap.Add(id_unit);
+            ap.Add(isActive);
+            ap.Add(UserSettings.User.Id);
+            ap.Add(result);
+            ap.Add(isDel);
+
+            DataTable dtResult = sql.executeProcedure("[hardware].[SetMaterial]",
+                 new string[7] { "@id", "@cName", "@id_unit", "@isActive", "@id_user", "@result", "@isDel" },
+                 new DbType[7] { DbType.Int32, DbType.String, DbType.Int32, DbType.Boolean, DbType.Int32, DbType.Int32, DbType.Boolean }, ap);
+
+            return dtResult;
+        }
+
+        #endregion
+
+        #region "Журнал движения материалов"
+        public static DataTable GetMetrialOstOnDate(DateTime date)
+        {
+            ap.Clear();
+            ap.Add(date);
+
+            return sql.executeProcedure("[hardware].[GetMetrialOstOnDate]",
+                 new string[1] { "@date" },
+                 new DbType[1] {DbType.Date }, ap);
+        }
+
+        public static DataTable FindMovementMaterial(int idBasis, int NumberBase, DateTime YearBasis)
+        {
+            ap.Clear();
+            ap.Add(idBasis);
+            ap.Add(NumberBase);
+            ap.Add(YearBasis);
+
+            return sql.executeProcedure("[hardware].[FindMovementMaterial]",
+                 new string[3] { "@idBasis", "@NumberBase", "@YearBasis" },
+                 new DbType[3] { DbType.Int32,DbType.Int32,DbType.Date }, ap);
+        }
+
+        #endregion
 
         #endregion
     }
@@ -1366,5 +1541,18 @@ namespace hardWareViewer
             else
                 return 2;
         }
+
+        public static void DoOnUIThread(MethodInvoker d, Form _this)
+        {
+            if (_this.InvokeRequired) { _this.Invoke(d); } else { d(); }
+        }
+    }
+
+    public class material
+    {
+        public static int id { set; get; }
+        public static string cName { set; get; }
+        public static string cNameUnit { set; get; }
+        public static int id_unit { set; get; }
     }
 }

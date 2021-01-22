@@ -14,8 +14,7 @@ namespace hardWareViewer
         public frmDirectoryPlaceHardWare()
         {
             InitializeComponent();
-            dgvData.AutoGenerateColumns = false;
-            get_data();
+            dgvData.AutoGenerateColumns = false;        
         }
 
         private void btAdd_Click(object sender, EventArgs e)
@@ -51,7 +50,8 @@ namespace hardWareViewer
                     int id = int.Parse(dtData.DefaultView[dgvData.CurrentRow.Index]["id"].ToString());
                     string cName = dtData.DefaultView[dgvData.CurrentRow.Index]["id"].ToString();
                     bool isActiveStatus = bool.Parse(dtData.DefaultView[dgvData.CurrentRow.Index]["isActive"].ToString());
-                    DataTable dtResult = readSQL.setLocation(id, cName, 2, true);
+                    int id_object = (int)dtData.DefaultView[dgvData.CurrentRow.Index]["id_object"];
+                    DataTable dtResult = readSQL.setLocation(id, cName, id_object, 2, true);
 
                     if (dtResult != null && dtResult.Rows.Count != 0)
                         if (dtResult.Rows[0]["id"].ToString().Equals("-1"))
@@ -85,6 +85,9 @@ namespace hardWareViewer
                 string str = "";
 
                 str += string.Format("cName like '%{0}%'", tbName.Text.Trim());
+
+                if ((int)cmbObject.SelectedValue != 0)
+                    str += (str.Length != 0 ? " and" : "") + $"id_object = {cmbObject.SelectedValue}";
 
                 if (!chbIsActive.Checked)
                     str += " AND isActive = 1";
@@ -140,5 +143,19 @@ namespace hardWareViewer
             filter();
         }
 
+        private void frmDirectoryPlaceHardWare_Load(object sender, EventArgs e)
+        {
+            DataTable dtObject = readSQL.getObject(true);
+            cmbObject.DataSource = dtObject;
+            cmbObject.DisplayMember = "cName";
+            cmbObject.ValueMember = "id";
+
+            get_data();
+        }
+
+        private void cmbObject_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            filter();
+        }
     }
 }

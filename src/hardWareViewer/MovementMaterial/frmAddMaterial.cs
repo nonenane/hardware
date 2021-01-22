@@ -70,10 +70,14 @@ namespace hardWareViewer.MovementMaterial
 
         private void btSelect_Click(object sender, EventArgs e)
         {
-            tbUnit.Text = "Шт.";
-            id_Material = 1;
-            tbMaterial.Text = "Губка";
-            isEditData = true;
+            if (new Material.frmList() { isSelect=true,Text = "Справочник типов расходных материалов -  выбор материала" }.ShowDialog() == DialogResult.OK)
+            {
+
+                tbUnit.Text = material.cNameUnit;
+                id_Material = material.id;
+                tbMaterial.Text = material.cName;
+                isEditData = true;
+            }
         }
 
         private void tbCount_KeyPress(object sender, KeyPressEventArgs e)

@@ -28,7 +28,14 @@ namespace hardWareViewer.listHardware
                 tbInventory.ReadOnly = false;
 
             dtListResp = readSQL.getListResponsibles(1);
-            cbResponsible.DataSource = dtListResp;
+            DataTable dtListRespActive = null;
+            if (dtListResp != null)
+            {
+                dtListRespActive = dtListResp.Copy();
+                dtListRespActive.DefaultView.RowFilter = "isActive = 1";
+                dtListRespActive = dtListRespActive.DefaultView.ToTable().Copy();
+            }
+            cbResponsible.DataSource = dtListRespActive;
             cbResponsible.ValueMember = "id";
             cbResponsible.DisplayMember = "FIO";
             cbResponsible.SelectedIndex = -1;

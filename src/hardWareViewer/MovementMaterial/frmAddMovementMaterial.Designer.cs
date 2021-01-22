@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btSave = new System.Windows.Forms.Button();
             this.btClose = new System.Windows.Forms.Button();
@@ -42,19 +43,20 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbFilterComment = new System.Windows.Forms.TextBox();
             this.dgvData = new System.Windows.Forms.DataGridView();
-            this.tbComment = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btAdd = new System.Windows.Forms.Button();
-            this.btEdit = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.cMol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbComment = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btAdd = new System.Windows.Forms.Button();
+            this.btEdit = new System.Windows.Forms.Button();
+            this.btDel = new System.Windows.Forms.Button();
+            this.tbFilterName = new System.Windows.Forms.TextBox();
+            this.tbFilterMol = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +69,7 @@
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(32, 32);
             this.btSave.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.btSave, "Сохранить");
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
@@ -78,6 +81,7 @@
             this.btClose.Name = "btClose";
             this.btClose.Size = new System.Drawing.Size(32, 32);
             this.btClose.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.btClose, "Выход");
             this.btClose.UseVisualStyleBackColor = true;
             this.btClose.Click += new System.EventHandler(this.btClose_Click);
             // 
@@ -191,12 +195,13 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "Год документа";
             // 
-            // textBox2
+            // tbFilterComment
             // 
-            this.textBox2.Location = new System.Drawing.Point(294, 104);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 14;
+            this.tbFilterComment.Location = new System.Drawing.Point(294, 104);
+            this.tbFilterComment.Name = "tbFilterComment";
+            this.tbFilterComment.Size = new System.Drawing.Size(100, 20);
+            this.tbFilterComment.TabIndex = 14;
+            this.tbFilterComment.TextChanged += new System.EventHandler(this.tbFilterMol_TextChanged);
             // 
             // dgvData
             // 
@@ -226,67 +231,7 @@
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(554, 150);
             this.dgvData.TabIndex = 16;
-            // 
-            // tbComment
-            // 
-            this.tbComment.Location = new System.Drawing.Point(102, 293);
-            this.tbComment.Multiline = true;
-            this.tbComment.Name = "tbComment";
-            this.tbComment.Size = new System.Drawing.Size(343, 104);
-            this.tbComment.TabIndex = 14;
-            this.tbComment.TextChanged += new System.EventHandler(this.tbNumberBase_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 293);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Комментарий";
-            // 
-            // btAdd
-            // 
-            this.btAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAdd.Location = new System.Drawing.Point(458, 293);
-            this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(32, 32);
-            this.btAdd.TabIndex = 17;
-            this.btAdd.UseVisualStyleBackColor = true;
-            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
-            // 
-            // btEdit
-            // 
-            this.btEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btEdit.Location = new System.Drawing.Point(496, 293);
-            this.btEdit.Name = "btEdit";
-            this.btEdit.Size = new System.Drawing.Size(32, 32);
-            this.btEdit.TabIndex = 17;
-            this.btEdit.UseVisualStyleBackColor = true;
-            this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(534, 293);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(32, 32);
-            this.button3.TabIndex = 17;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(188, 104);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 14;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(82, 104);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 14;
+            this.dgvData.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvData_ColumnWidthChanged);
             // 
             // cMol
             // 
@@ -316,12 +261,83 @@
             this.cComment.Name = "cComment";
             this.cComment.ReadOnly = true;
             // 
+            // tbComment
+            // 
+            this.tbComment.Location = new System.Drawing.Point(102, 293);
+            this.tbComment.Multiline = true;
+            this.tbComment.Name = "tbComment";
+            this.tbComment.Size = new System.Drawing.Size(343, 104);
+            this.tbComment.TabIndex = 14;
+            this.tbComment.TextChanged += new System.EventHandler(this.tbNumberBase_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 293);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Комментарий";
+            // 
+            // btAdd
+            // 
+            this.btAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btAdd.Image = global::hardWareViewer.Properties.Resources.document_add;
+            this.btAdd.Location = new System.Drawing.Point(458, 293);
+            this.btAdd.Name = "btAdd";
+            this.btAdd.Size = new System.Drawing.Size(32, 32);
+            this.btAdd.TabIndex = 17;
+            this.toolTip1.SetToolTip(this.btAdd, "Добавить");
+            this.btAdd.UseVisualStyleBackColor = true;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
+            // 
+            // btEdit
+            // 
+            this.btEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btEdit.Image = global::hardWareViewer.Properties.Resources.edit;
+            this.btEdit.Location = new System.Drawing.Point(496, 293);
+            this.btEdit.Name = "btEdit";
+            this.btEdit.Size = new System.Drawing.Size(32, 32);
+            this.btEdit.TabIndex = 17;
+            this.toolTip1.SetToolTip(this.btEdit, "Редактировать");
+            this.btEdit.UseVisualStyleBackColor = true;
+            this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
+            // 
+            // btDel
+            // 
+            this.btDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btDel.Image = global::hardWareViewer.Properties.Resources.document_delete;
+            this.btDel.Location = new System.Drawing.Point(534, 293);
+            this.btDel.Name = "btDel";
+            this.btDel.Size = new System.Drawing.Size(32, 32);
+            this.btDel.TabIndex = 17;
+            this.toolTip1.SetToolTip(this.btDel, "Удалить");
+            this.btDel.UseVisualStyleBackColor = true;
+            this.btDel.Click += new System.EventHandler(this.btDel_Click);
+            // 
+            // tbFilterName
+            // 
+            this.tbFilterName.Location = new System.Drawing.Point(188, 104);
+            this.tbFilterName.Name = "tbFilterName";
+            this.tbFilterName.Size = new System.Drawing.Size(100, 20);
+            this.tbFilterName.TabIndex = 14;
+            this.tbFilterName.TextChanged += new System.EventHandler(this.tbFilterMol_TextChanged);
+            // 
+            // tbFilterMol
+            // 
+            this.tbFilterMol.Location = new System.Drawing.Point(82, 104);
+            this.tbFilterMol.Name = "tbFilterMol";
+            this.tbFilterMol.Size = new System.Drawing.Size(100, 20);
+            this.tbFilterMol.TabIndex = 14;
+            this.tbFilterMol.TextChanged += new System.EventHandler(this.tbFilterMol_TextChanged);
+            // 
             // frmAddMovementMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 411);
-            this.Controls.Add(this.button3);
+            this.ControlBox = false;
+            this.Controls.Add(this.btDel);
             this.Controls.Add(this.btEdit);
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.dgvData);
@@ -329,16 +345,20 @@
             this.Controls.Add(this.cmbTypeOperation);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.tbComment);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tbFilterMol);
+            this.Controls.Add(this.tbFilterName);
+            this.Controls.Add(this.tbFilterComment);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btSave);
             this.Controls.Add(this.btClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmAddMovementMaterial";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAddMovementMaterial";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddMovementMaterial_FormClosing);
@@ -364,20 +384,21 @@
         private System.Windows.Forms.DateTimePicker dtpYear;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbFilterComment;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.TextBox tbComment;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Button btEdit;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button btDel;
+        private System.Windows.Forms.TextBox tbFilterName;
+        private System.Windows.Forms.TextBox tbFilterMol;
         private System.Windows.Forms.ComboBox cmbTypeBasic;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn cMol;
         private System.Windows.Forms.DataGridViewTextBoxColumn cName;
         private System.Windows.Forms.DataGridViewTextBoxColumn cCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn cComment;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

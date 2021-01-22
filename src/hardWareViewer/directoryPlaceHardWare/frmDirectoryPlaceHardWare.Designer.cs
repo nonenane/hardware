@@ -36,13 +36,16 @@
             this.chbIsActive = new System.Windows.Forms.CheckBox();
             this.pIsActive = new System.Windows.Forms.Panel();
             this.dgvData = new System.Windows.Forms.DataGridView();
-            this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbName = new System.Windows.Forms.TextBox();
             this.btAdd = new System.Windows.Forms.Button();
             this.btEdit = new System.Windows.Forms.Button();
             this.btDelete = new System.Windows.Forms.Button();
             this.btClose = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbObject = new System.Windows.Forms.ComboBox();
+            this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cObject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,7 +100,8 @@
             this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cName});
+            this.cName,
+            this.cObject});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -106,7 +110,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvData.Location = new System.Drawing.Point(12, 38);
+            this.dgvData.Location = new System.Drawing.Point(12, 67);
             this.dgvData.MultiSelect = false;
             this.dgvData.Name = "dgvData";
             this.dgvData.ReadOnly = true;
@@ -120,24 +124,17 @@
             this.dgvData.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(370, 332);
+            this.dgvData.Size = new System.Drawing.Size(370, 303);
             this.dgvData.TabIndex = 3;
             this.dgvData.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvData_RowPostPaint);
             this.dgvData.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvData_RowPrePaint);
-            // 
-            // cName
-            // 
-            this.cName.DataPropertyName = "cName";
-            this.cName.HeaderText = "Наименование местоположения";
-            this.cName.Name = "cName";
-            this.cName.ReadOnly = true;
             // 
             // tbName
             // 
             this.tbName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbName.Location = new System.Drawing.Point(12, 12);
+            this.tbName.Location = new System.Drawing.Point(12, 41);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(370, 20);
             this.tbName.TabIndex = 4;
@@ -191,12 +188,50 @@
             this.btClose.UseVisualStyleBackColor = true;
             this.btClose.Click += new System.EventHandler(this.btClose_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(171, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Объект";
+            // 
+            // cmbObject
+            // 
+            this.cmbObject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbObject.FormattingEnabled = true;
+            this.cmbObject.Location = new System.Drawing.Point(222, 6);
+            this.cmbObject.Name = "cmbObject";
+            this.cmbObject.Size = new System.Drawing.Size(160, 21);
+            this.cmbObject.TabIndex = 6;
+            this.cmbObject.SelectionChangeCommitted += new System.EventHandler(this.cmbObject_SelectionChangeCommitted);
+            // 
+            // cName
+            // 
+            this.cName.DataPropertyName = "cName";
+            this.cName.HeaderText = "Наименование местоположения";
+            this.cName.Name = "cName";
+            this.cName.ReadOnly = true;
+            // 
+            // cObject
+            // 
+            this.cObject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.cObject.DataPropertyName = "nameObject";
+            this.cObject.HeaderText = "Объект";
+            this.cObject.MinimumWidth = 80;
+            this.cObject.Name = "cObject";
+            this.cObject.ReadOnly = true;
+            this.cObject.Width = 80;
+            // 
             // frmDirectoryPlaceHardWare
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 420);
             this.ControlBox = false;
+            this.Controls.Add(this.cmbObject);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.pIsActive);
@@ -210,6 +245,7 @@
             this.Name = "frmDirectoryPlaceHardWare";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Справочник местоположений оборудования";
+            this.Load += new System.EventHandler(this.frmDirectoryPlaceHardWare_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -227,7 +263,10 @@
         private System.Windows.Forms.Panel pIsActive;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.TextBox tbName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cName;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbObject;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cObject;
     }
 }

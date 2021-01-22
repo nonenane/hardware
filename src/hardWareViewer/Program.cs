@@ -32,9 +32,13 @@ namespace hardWareViewer
                     config.userName = Nwuram.Framework.Settings.User.UserSettings.User.FullUsername;
                     config.statusCode = Nwuram.Framework.Settings.User.UserSettings.User.StatusCode.ToLower();
 
-                    Application.Run(new MovementMaterial.frmAddMovementMaterial());
-                    //Application.Run(new frmMain());
+                    //DataTable dt = readSQL.GetTMovementMaterial();
+                    //Application.Run(new journalMovementMaterial.frmList());
+                    //Application.Run(new MovementMaterial.frmAddMovementMaterial() {Text = "Добавить движение расходного материала" });
+                    //Application.Run(new MovementMaterial.frmAddMovementMaterial() { Text = "Редактировать движение расходного материала", row = dt.DefaultView[4] });
                     
+                    Application.Run(new frmMain());
+
                     Logging.StartFirstLevel(2);
                     Logging.Comment("Выход из программы");
                     Logging.StopFirstLevel();

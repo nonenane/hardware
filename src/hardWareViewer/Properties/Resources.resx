@@ -121,11 +121,14 @@
   <data name="Scanner2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Scanner2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="file_o1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\file-o.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="принять сканер" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\принять сканер.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="document_library" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\document-library.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="old-edit-redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\old-edit-redo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="document_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\document_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,14 +172,17 @@
   <data name="file_excel_o" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\file_excel_o.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="настройки" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\настройки.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="folder_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\folder_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Select" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Select.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="выдать сканер" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\выдать сканер.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="список сканеров" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\список сканеров.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="x-office-spreadsheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\x-office-spreadsheet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,22 +208,19 @@
   <data name="old-edit-undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\old-edit-undo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="список сканеров" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\список сканеров.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="remove_ticket1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\remove-ticket1-.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="file_o1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\file-o.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="printer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\printer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="document_library" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\document-library.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="remove_ticket1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\remove-ticket1-.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="old-edit-redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\old-edit-redo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="выдать сканер" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\выдать сканер.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="настройки" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\настройки.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="edit1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

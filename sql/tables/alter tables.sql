@@ -1,0 +1,1 @@
+ALTER TABLE hardware.s_Location ADD id_object int  null
