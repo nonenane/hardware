@@ -72,6 +72,10 @@ namespace hardWareViewer
         {
             InitializeComponent();
             dgvData.AllowUserToAddRows = false;
+
+            btDelete.Visible = btEdited.Visible = btAdded.Visible = !config.statusCode.ToUpper().Equals("КНТ");
+
+
             init_combobox();
             get_data();
         }
@@ -83,14 +87,14 @@ namespace hardWareViewer
 
             DataTable dtLocation = readSQL.getLocation();
             dtLocation.Columns.Add(col);
-            dtLocation.Rows.Add(-1, "Все", true, 0);
+            dtLocation.Rows.Add(-1, "Все", true, 0, "", 0);
             dtLocation.DefaultView.RowFilter = "isActive = 1";
             dtLocation.DefaultView.Sort = "main asc";
-            cbLocation.DataSource = dtLocation;
+            cbLocation.DataSource = dtLocation.DefaultView;
             cbLocation.DisplayMember = "cName";
             cbLocation.ValueMember = "id";
 
-
+            /*
             DataTable dtResponsibles = readSQL.getListResponsibles(1);
             col = new DataColumn("main", typeof(int));
             col.DefaultValue = 1;
@@ -101,6 +105,7 @@ namespace hardWareViewer
             cbResponsibles.DataSource = dtResponsibles;
             cbResponsibles.DisplayMember = "FIO";
             cbResponsibles.ValueMember = "id";
+            */
 
             DataTable dtStatus = readSQL.getStatus("hardwareStatus");
             col = new DataColumn("main", typeof(int));
@@ -162,6 +167,7 @@ namespace hardWareViewer
                 dtSelected = null;
             }
 
+            genResponsible();
             filter();
             dgvData.DataSource = dtData;
             dgvData_SelectionChanged(null, null);
@@ -189,6 +195,13 @@ namespace hardWareViewer
 
         private void filter()
         {
+            if (dtData == null || dtData.Rows.Count == 0)
+            {
+                btViewComponents.Enabled = btAddDoc.Enabled = false;
+                return;
+            }
+
+
             try
             {
                 string filter = "";
@@ -200,6 +213,19 @@ namespace hardWareViewer
                 filter += (filter.Trim().Length != 0 ? " AND " : "") + string.Format("Convert(EAN,System.String) like '%{0}%'", tbEAN.Text.Trim());
                 filter += (filter.Trim().Length != 0 ? " AND " : "") + string.Format("Convert(cName,System.String) like '%{0}%'", tbName.Text.Trim());
                 filter += (filter.Trim().Length != 0 ? " AND " : "") + string.Format("Convert(Number,System.String) like '%{0}%'", tbNumberSZ.Text.Trim());
+
+                if (tbObject.Text.Trim().Length > 0)
+                    filter += (filter.Trim().Length != 0 ? " AND " : "") + string.Format("Convert(nameObject,System.String) like '%{0}%'", tbObject.Text.Trim());
+
+                if (tbNameHardWare.Text.Trim().Length > 0)
+                    filter += (filter.Trim().Length != 0 ? " AND " : "") + string.Format("Convert(nameHardware,System.String) like '%{0}%'", tbNameHardWare.Text.Trim());
+
+                if (tbPlace.Text.Trim().Length > 0)
+                    filter += (filter.Trim().Length != 0 ? " AND " : "") + string.Format("Convert(nameLocation,System.String) like '%{0}%'", tbPlace.Text.Trim());
+
+                if (tbResponsibleName.Text.Trim().Length > 0)
+                    filter += (filter.Trim().Length != 0 ? " AND " : "") + string.Format("Convert(FIO,System.String) like '%{0}%'", tbResponsibleName.Text.Trim());
+
 
                 if (rbComponents.Checked)
                     filter += (filter.Trim().Length != 0 ? " AND " : "") + string.Format("TypeComponentsHardware = {0}", 1);
@@ -221,6 +247,12 @@ namespace hardWareViewer
                 //if (isStatusFirst)
                 //    filter += (filter.Trim().Length != 0 ? " AND " : "") + string.Format("status = 1", "");
 
+                if (chbScan.Checked)
+                    filter += (filter.Trim().Length != 0 ? " AND " : "") + $"scaneCount > 0";
+
+                if (chbUnemploy.Checked)
+                    filter += (filter.Trim().Length != 0 ? " AND " : "") + $"isWorkingNow  = 0";
+
                 dtData.DefaultView.RowFilter = filter;
 
             }
@@ -230,6 +262,37 @@ namespace hardWareViewer
             }
 
             btViewComponents.Enabled = btAddDoc.Enabled = dtData.DefaultView.Count != 0;
+        }
+
+        private void genResponsible()
+        {
+            DataTable dtResponsibles = new DataTable();
+            dtResponsibles.Columns.Add("id", typeof(int));
+            dtResponsibles.Columns.Add("FIO", typeof(string));
+            dtResponsibles.Columns.Add("main", typeof(string));
+            dtResponsibles.AcceptChanges();
+
+            if (dtData != null && dtData.Rows.Count > 0)
+            {
+                var group = dtData.AsEnumerable().GroupBy(r => new { id = r.Field<int>("id_Responsible"), FIO = r.Field<string>("FIO") })
+                    .Select(s => new
+                    {
+                        s.Key.id,
+                        s.Key.FIO
+                    });
+
+                foreach (var r in group)
+                {
+                    dtResponsibles.Rows.Add(r.id, r.FIO, 1);
+                }
+            }
+
+
+            dtResponsibles.Rows.Add(-1, "Все", 0);            
+            dtResponsibles.DefaultView.Sort = "main asc,FIO asc";
+            cbResponsibles.DataSource = dtResponsibles;
+            cbResponsibles.DisplayMember = "FIO";
+            cbResponsibles.ValueMember = "id";
         }
 
         private void btAddDoc_Click(object sender, EventArgs e)
@@ -622,6 +685,9 @@ namespace hardWareViewer
             int id = (int)dtData.DefaultView[dgvData.CurrentRow.Index]["id"];
             DataRowView row = dtData.DefaultView[dgvData.CurrentRow.Index];
 
+            frmListPreFilter frmPF = new frmListPreFilter();
+            if (frmPF.ShowDialog() == DialogResult.Cancel) return;
+
             Logging.StartFirstLevel(79);
             Logging.Comment("Выгрузка отчета по изменению для конкретного оборудования");
 
@@ -640,9 +706,10 @@ namespace hardWareViewer
 
             Logging.StopFirstLevel();
 
+            List<string> listFilter = frmPF.listFiler;
+            id = 11731;
 
-
-            reportHistory.createReport(id, DateTime.Now, DateTime.Now, "", 0);
+            reportHistory.createReport(id, DateTime.Now, DateTime.Now, "", 0, listFilter);
         }
 
         private void BtReport_Click(object sender, EventArgs e)
@@ -703,13 +770,24 @@ namespace hardWareViewer
             {
                 if (e.RowIndex != -1 && dtData != null && dtData.DefaultView.Count != 0)
                 {
+                    DataRowView row = dtData.DefaultView[e.RowIndex];
                     Color rColor = Color.White;
-                    if ((bool)dtData.DefaultView[e.RowIndex]["isGarant"])
+                    if ((bool)row["isGarant"])
                         rColor = panel1.BackColor;
 
                     dgvData.Rows[e.RowIndex].DefaultCellStyle.BackColor = rColor;
                     dgvData.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = rColor;
                     dgvData.Rows[e.RowIndex].DefaultCellStyle.SelectionForeColor = Color.Black;
+
+                    if (dtData.Columns.Contains("scaneCount") && row["scaneCount"]!=DBNull.Value && (int)row["scaneCount"]>0)
+                        dgvData.Rows[e.RowIndex].Cells["cLocation"].Style.BackColor =
+                        dgvData.Rows[e.RowIndex].Cells["cLocation"].Style.SelectionBackColor = pScane.BackColor;
+
+                    if (dtData.Columns.Contains("isWorkingNow") && row["isWorkingNow"] != DBNull.Value && !(bool)row["isWorkingNow"])
+                        dgvData.Rows[e.RowIndex].Cells["cResponsible"].Style.BackColor =
+                        dgvData.Rows[e.RowIndex].Cells["cResponsible"].Style.SelectionBackColor = pUnemploy.BackColor;
+                    
+
                 }
             }
             catch { }
@@ -736,6 +814,72 @@ namespace hardWareViewer
         private void tbNumberSZ_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != '\b';
+        }
+
+        private void chbScan_CheckedChanged(object sender, EventArgs e)
+        {
+            filter();
+        }
+
+        private void dgvData_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            int width = dgvData.Location.X+1;
+
+            foreach (DataGridViewColumn col in dgvData.Columns)
+            {
+                if (!col.Visible) continue;
+
+                if (col.Name.Equals(cNum.Name))
+                {
+                    tbNumber.Location = new Point(width, tbNumber.Location.Y);
+                    tbNumber.Size = new Size(col.Width, tbNumber.Size.Height);
+                }
+
+                if (col.Name.Equals(cEAN.Name))
+                {
+                    tbEAN.Location = new Point(width, tbNumber.Location.Y);
+                    tbEAN.Size = new Size(col.Width, tbNumber.Size.Height);
+                }
+
+                if (col.Name.Equals(cName.Name))
+                {
+                    tbName.Location = new Point(width, tbNumber.Location.Y);
+                    tbName.Size = new Size(col.Width, tbNumber.Size.Height);
+                }
+
+                if (col.Name.Equals(LocationComment.Name))
+                {
+                    tbObject.Location = new Point(width, tbNumber.Location.Y);
+                    tbObject.Size = new Size(col.Width, tbNumber.Size.Height);
+                }
+
+                if (col.Name.Equals(cHardWare.Name))
+                {
+                    tbNameHardWare.Location = new Point(width, tbNumber.Location.Y);
+                    tbNameHardWare.Size = new Size(col.Width, tbNumber.Size.Height);
+                }
+
+                if (col.Name.Equals(cLocation.Name))
+                {
+                    tbPlace.Location = new Point(width, tbNumber.Location.Y);
+                    tbPlace.Size = new Size(col.Width, tbNumber.Size.Height);
+                }
+
+                if (col.Name.Equals(cResponsible.Name))
+                {
+                    tbResponsibleName.Location = new Point(width, tbNumber.Location.Y);
+                    tbResponsibleName.Size = new Size(col.Width, tbNumber.Size.Height);
+                }
+
+                if (col.Name.Equals(cNumCZ.Name))
+                {
+                    tbNumberSZ.Location = new Point(width, tbNumber.Location.Y);
+                    tbNumberSZ.Size = new Size(col.Width, tbNumber.Size.Height);
+                }
+
+
+                width += col.Width;
+            }
         }
     }
 }

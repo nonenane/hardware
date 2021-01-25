@@ -10,7 +10,7 @@ namespace hardWareViewer.listHardware
 {
     public static class reportHistory
     {
-        public static void createReport(int id_hardware,DateTime startDate,DateTime endDate,string strType,int type)
+        public static void createReport(int id_hardware,DateTime startDate,DateTime endDate,string strType,int type,List<string> listFilter)
         {
             DataTable dtReport = new DataTable();
             if(id_hardware!=0)
@@ -21,11 +21,20 @@ namespace hardWareViewer.listHardware
             if (dtReport == null) { MessageBox.Show("Нет данных для выгрузки!","Информирование"); ; return; }
             if (dtReport.Rows.Count == 0) { MessageBox.Show("Нет данных для выгрузки!", "Информирование"); ; return; }
 
+
+            if (listFilter != null)
+            {
+                EnumerableRowCollection<DataRow> rowsFind = dtReport.AsEnumerable().Where(r => listFilter.Contains(r.Field<string>("cName").Trim()));
+                if(rowsFind.Count()==0) { MessageBox.Show("Нет данных для выгрузки!", "Информирование"); ; return; }
+
+                dtReport = rowsFind.CopyToDataTable();
+            }
+
             Nwuram.Framework.ToExcelNew.ExcelUnLoad report = new Nwuram.Framework.ToExcelNew.ExcelUnLoad();
 
             int indexRow = 1;
 
-            string[] listTitle = new string[] { "Инв. номер", @"Оборудование\Комплектующее", @"Наименование оборуд.\комплект.", "Параметр", "Значение До", "Значение после", "Время изменения", "Кто изменил" };
+            string[] listTitle = new string[] { "Инв. номер", @"Оборудование\Комплектующее", @"Наименование оборуд.\комплект.", @"Дата добавления оборудования", "Параметр", "Значение До", "Значение после", "Время изменения", "Кто изменил" };
 
             report.Merge(indexRow, 1, indexRow, listTitle.Length);
             report.AddSingleValue("Отчёт по изменению в оборудовании", indexRow, 1);
@@ -59,6 +68,8 @@ namespace hardWareViewer.listHardware
             {
                 report.AddSingleValue(listTitle[i], indexRow, i + 1);
                 report.SetBorders(indexRow, i + 1, indexRow, i + 1);
+                report.SetCellAlignmentToCenter(indexRow, i + 1, indexRow, i + 1);
+
             }
             indexRow++;
 
@@ -81,25 +92,28 @@ namespace hardWareViewer.listHardware
                 report.Merge(indexRow, 1, indexRow + row.Count()-1, 1);
                 report.Merge(indexRow, 2, indexRow + row.Count()-1, 2);
                 report.Merge(indexRow, 3, indexRow + row.Count()-1, 3);
-                report.Merge(indexRow, 7, indexRow + row.Count() - 1, 7);
                 report.Merge(indexRow, 8, indexRow + row.Count() - 1, 8);
+                report.Merge(indexRow, 9, indexRow + row.Count() - 1, 9);
                 report.AddSingleValue(row[0]["InventoryNumber"].ToString(), indexRow, 1);
                 report.AddSingleValue(row[0]["TypeComponentsHardware"].ToString(), indexRow, 2);
                 report.AddSingleValue(row[0]["nameOb"].ToString(), indexRow, 3);
-                report.AddSingleValue(row[0]["DateCreate"].ToString(), indexRow, 7);
-                report.AddSingleValue(row[0]["FIO"].ToString(), indexRow, 8);
-                report.SetCellAlignmentToJustify(indexRow, 1, indexRow, 8);
+                report.AddSingleValue(row[0]["DateCreate"].ToString(), indexRow, 8);
+                report.AddSingleValue(row[0]["FIO"].ToString(), indexRow, 9);
+                report.SetCellAlignmentToJustify(indexRow, 1, indexRow, 9);
                 report.SetCellAlignmentToCenter(indexRow, 1, indexRow, 1);
                 report.SetCellAlignmentToCenter(indexRow, 2, indexRow, 2);
                 report.SetCellAlignmentToCenter(indexRow, 3, indexRow, 3);
-                report.SetCellAlignmentToCenter(indexRow, 7, indexRow, 7);
                 report.SetCellAlignmentToCenter(indexRow, 8, indexRow, 8);
+                report.SetCellAlignmentToCenter(indexRow, 9, indexRow, 9);
 
                 foreach (DataRow r in row)
-                {                    
-                    report.AddSingleValue(r["cName"].ToString(), indexRow, 4);
-                    report.AddSingleValue(r["valueOld"].ToString(), indexRow, 5);
-                    report.AddSingleValue(r["valueNew"].ToString(), indexRow, 6);
+                {
+                    report.AddSingleValue(r["DateCreateHardWare"].ToString(), indexRow, 4);
+                    report.AddSingleValue(r["cName"].ToString(), indexRow, 5);
+                    report.AddSingleValue(r["valueOld"].ToString(), indexRow, 6);
+                    report.AddSingleValue(r["valueNew"].ToString(), indexRow, 7);
+
+                    report.SetCellAlignmentToCenter(indexRow, 4, indexRow, 4);
 
                     if ((bool)r["isDeleteRow"])
                     {

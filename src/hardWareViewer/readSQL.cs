@@ -1125,7 +1125,7 @@ namespace hardWareViewer
                     if (!dtResult.Columns.Contains("isMain"))
                     {
                         DataColumn col = new DataColumn("isMain", typeof(int));
-                        col.DefaultValue = 1;
+                        col.DefaultValue = 1;       
                         dtResult.Columns.Add(col);
                         dtResult.AcceptChanges();
                     }
@@ -1545,6 +1545,22 @@ namespace hardWareViewer
         public static void DoOnUIThread(MethodInvoker d, Form _this)
         {
             if (_this.InvokeRequired) { _this.Invoke(d); } else { d(); }
+        }
+
+        public static void SetDoubleBuffered(System.Windows.Forms.Control c)
+        {
+            //Taxes: Remote Desktop Connection and painting
+            //http://blogs.msdn.com/oldnewthing/archive/2006/01/03/508694.aspx
+            if (System.Windows.Forms.SystemInformation.TerminalServerSession)
+                return;
+
+            System.Reflection.PropertyInfo aProp =
+                  typeof(System.Windows.Forms.Control).GetProperty(
+                        "DoubleBuffered",
+                        System.Reflection.BindingFlags.NonPublic |
+                        System.Reflection.BindingFlags.Instance);
+
+            aProp.SetValue(c, true, null);
         }
     }
 

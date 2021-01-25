@@ -42,6 +42,12 @@
             this.tbComment = new System.Windows.Forms.TextBox();
             this.tbNumber = new System.Windows.Forms.TextBox();
             this.dgvData = new System.Windows.Forms.DataGridView();
+            this.cNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cReasone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cDateWriteOff = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cScan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btAddDoc = new System.Windows.Forms.Button();
             this.btClose = new System.Windows.Forms.Button();
             this.btAdd = new System.Windows.Forms.Button();
@@ -52,17 +58,12 @@
             this.btNextStatus = new System.Windows.Forms.Button();
             this.btView = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.cNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cReasone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cDateWriteOff = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cScan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
             // btUpdate
             // 
+            this.btUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btUpdate.Image = global::hardWareViewer.Properties.Resources.reload_8055;
             this.btUpdate.Location = new System.Drawing.Point(850, 11);
             this.btUpdate.Name = "btUpdate";
@@ -74,9 +75,8 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(331, 15);
+            this.label3.Location = new System.Drawing.Point(356, 15);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 35;
@@ -102,10 +102,9 @@
             // 
             // cbStatus
             // 
-            this.cbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatus.FormattingEnabled = true;
-            this.cbStatus.Location = new System.Drawing.Point(381, 11);
+            this.cbStatus.Location = new System.Drawing.Point(406, 11);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(172, 21);
             this.cbStatus.TabIndex = 34;
@@ -186,121 +185,13 @@
             this.dgvData.ReadOnly = true;
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(870, 339);
+            this.dgvData.Size = new System.Drawing.Size(883, 339);
             this.dgvData.TabIndex = 42;
             this.dgvData.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseDoubleClick);
             this.dgvData.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvData_RowPostPaint);
             this.dgvData.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvData_RowPrePaint);
             this.dgvData.SelectionChanged += new System.EventHandler(this.dgvData_SelectionChanged);
             this.dgvData.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvData_Paint);
-            // 
-            // btAddDoc
-            // 
-            this.btAddDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAddDoc.Image = global::hardWareViewer.Properties.Resources.folder_add;
-            this.btAddDoc.Location = new System.Drawing.Point(12, 425);
-            this.btAddDoc.Name = "btAddDoc";
-            this.btAddDoc.Size = new System.Drawing.Size(32, 32);
-            this.btAddDoc.TabIndex = 49;
-            this.toolTip1.SetToolTip(this.btAddDoc, "Работа с документами");
-            this.btAddDoc.UseVisualStyleBackColor = true;
-            this.btAddDoc.Click += new System.EventHandler(this.btAddDoc_Click);
-            // 
-            // btClose
-            // 
-            this.btClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btClose.Image = global::hardWareViewer.Properties.Resources.door_out;
-            this.btClose.Location = new System.Drawing.Point(850, 425);
-            this.btClose.Name = "btClose";
-            this.btClose.Size = new System.Drawing.Size(32, 32);
-            this.btClose.TabIndex = 48;
-            this.toolTip1.SetToolTip(this.btClose, "Выход");
-            this.btClose.UseVisualStyleBackColor = true;
-            this.btClose.Click += new System.EventHandler(this.btClose_Click);
-            // 
-            // btAdd
-            // 
-            this.btAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAdd.Image = global::hardWareViewer.Properties.Resources.document_add;
-            this.btAdd.Location = new System.Drawing.Point(736, 425);
-            this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(32, 32);
-            this.btAdd.TabIndex = 45;
-            this.toolTip1.SetToolTip(this.btAdd, "Добавить акт списания");
-            this.btAdd.UseVisualStyleBackColor = true;
-            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
-            // 
-            // btEdit
-            // 
-            this.btEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btEdit.Image = global::hardWareViewer.Properties.Resources.edit;
-            this.btEdit.Location = new System.Drawing.Point(774, 425);
-            this.btEdit.Name = "btEdit";
-            this.btEdit.Size = new System.Drawing.Size(32, 32);
-            this.btEdit.TabIndex = 46;
-            this.toolTip1.SetToolTip(this.btEdit, "Редактировать акт списания");
-            this.btEdit.UseVisualStyleBackColor = true;
-            this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
-            // 
-            // btDel
-            // 
-            this.btDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDel.Image = global::hardWareViewer.Properties.Resources.document_delete;
-            this.btDel.Location = new System.Drawing.Point(812, 425);
-            this.btDel.Name = "btDel";
-            this.btDel.Size = new System.Drawing.Size(32, 32);
-            this.btDel.TabIndex = 47;
-            this.toolTip1.SetToolTip(this.btDel, "Удалить акт списания");
-            this.btDel.UseVisualStyleBackColor = true;
-            this.btDel.Click += new System.EventHandler(this.btDel_Click);
-            // 
-            // btDown
-            // 
-            this.btDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDown.Image = global::hardWareViewer.Properties.Resources.old_edit_undo;
-            this.btDown.Location = new System.Drawing.Point(343, 425);
-            this.btDown.Name = "btDown";
-            this.btDown.Size = new System.Drawing.Size(32, 32);
-            this.btDown.TabIndex = 50;
-            this.toolTip1.SetToolTip(this.btDown, "Отклонить акт списания");
-            this.btDown.UseVisualStyleBackColor = true;
-            this.btDown.Click += new System.EventHandler(this.btDown_Click);
-            // 
-            // btPrint
-            // 
-            this.btPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btPrint.Image = global::hardWareViewer.Properties.Resources.print;
-            this.btPrint.Location = new System.Drawing.Point(50, 425);
-            this.btPrint.Name = "btPrint";
-            this.btPrint.Size = new System.Drawing.Size(32, 32);
-            this.btPrint.TabIndex = 51;
-            this.toolTip1.SetToolTip(this.btPrint, "Печать");
-            this.btPrint.UseVisualStyleBackColor = true;
-            this.btPrint.Click += new System.EventHandler(this.btPrint_Click);
-            // 
-            // btNextStatus
-            // 
-            this.btNextStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btNextStatus.Image = global::hardWareViewer.Properties.Resources.old_edit_redo;
-            this.btNextStatus.Location = new System.Drawing.Point(381, 425);
-            this.btNextStatus.Name = "btNextStatus";
-            this.btNextStatus.Size = new System.Drawing.Size(32, 32);
-            this.btNextStatus.TabIndex = 52;
-            this.toolTip1.SetToolTip(this.btNextStatus, "Подтвердить акт списания");
-            this.btNextStatus.UseVisualStyleBackColor = true;
-            this.btNextStatus.Click += new System.EventHandler(this.btNextStatus_Click);
-            // 
-            // btView
-            // 
-            this.btView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btView.Image = global::hardWareViewer.Properties.Resources.eye_quick_view;
-            this.btView.Location = new System.Drawing.Point(675, 425);
-            this.btView.Name = "btView";
-            this.btView.Size = new System.Drawing.Size(32, 32);
-            this.btView.TabIndex = 53;
-            this.toolTip1.SetToolTip(this.btView, "Просмотр");
-            this.btView.UseVisualStyleBackColor = true;
-            this.btView.Click += new System.EventHandler(this.btView_Click);
             // 
             // cNumber
             // 
@@ -366,11 +257,119 @@
             this.cScan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.cScan.Width = 60;
             // 
+            // btAddDoc
+            // 
+            this.btAddDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btAddDoc.Image = global::hardWareViewer.Properties.Resources.folder_add;
+            this.btAddDoc.Location = new System.Drawing.Point(25, 419);
+            this.btAddDoc.Name = "btAddDoc";
+            this.btAddDoc.Size = new System.Drawing.Size(32, 32);
+            this.btAddDoc.TabIndex = 49;
+            this.toolTip1.SetToolTip(this.btAddDoc, "Работа с документами");
+            this.btAddDoc.UseVisualStyleBackColor = true;
+            this.btAddDoc.Click += new System.EventHandler(this.btAddDoc_Click);
+            // 
+            // btClose
+            // 
+            this.btClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btClose.Image = global::hardWareViewer.Properties.Resources.door_out;
+            this.btClose.Location = new System.Drawing.Point(863, 419);
+            this.btClose.Name = "btClose";
+            this.btClose.Size = new System.Drawing.Size(32, 32);
+            this.btClose.TabIndex = 48;
+            this.toolTip1.SetToolTip(this.btClose, "Выход");
+            this.btClose.UseVisualStyleBackColor = true;
+            this.btClose.Click += new System.EventHandler(this.btClose_Click);
+            // 
+            // btAdd
+            // 
+            this.btAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btAdd.Image = global::hardWareViewer.Properties.Resources.document_add;
+            this.btAdd.Location = new System.Drawing.Point(749, 419);
+            this.btAdd.Name = "btAdd";
+            this.btAdd.Size = new System.Drawing.Size(32, 32);
+            this.btAdd.TabIndex = 45;
+            this.toolTip1.SetToolTip(this.btAdd, "Добавить акт списания");
+            this.btAdd.UseVisualStyleBackColor = true;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
+            // 
+            // btEdit
+            // 
+            this.btEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btEdit.Image = global::hardWareViewer.Properties.Resources.edit;
+            this.btEdit.Location = new System.Drawing.Point(787, 419);
+            this.btEdit.Name = "btEdit";
+            this.btEdit.Size = new System.Drawing.Size(32, 32);
+            this.btEdit.TabIndex = 46;
+            this.toolTip1.SetToolTip(this.btEdit, "Редактировать акт списания");
+            this.btEdit.UseVisualStyleBackColor = true;
+            this.btEdit.Click += new System.EventHandler(this.btEdit_Click);
+            // 
+            // btDel
+            // 
+            this.btDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btDel.Image = global::hardWareViewer.Properties.Resources.document_delete;
+            this.btDel.Location = new System.Drawing.Point(825, 419);
+            this.btDel.Name = "btDel";
+            this.btDel.Size = new System.Drawing.Size(32, 32);
+            this.btDel.TabIndex = 47;
+            this.toolTip1.SetToolTip(this.btDel, "Удалить акт списания");
+            this.btDel.UseVisualStyleBackColor = true;
+            this.btDel.Click += new System.EventHandler(this.btDel_Click);
+            // 
+            // btDown
+            // 
+            this.btDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btDown.Image = global::hardWareViewer.Properties.Resources.old_edit_undo;
+            this.btDown.Location = new System.Drawing.Point(356, 419);
+            this.btDown.Name = "btDown";
+            this.btDown.Size = new System.Drawing.Size(32, 32);
+            this.btDown.TabIndex = 50;
+            this.toolTip1.SetToolTip(this.btDown, "Отклонить акт списания");
+            this.btDown.UseVisualStyleBackColor = true;
+            this.btDown.Click += new System.EventHandler(this.btDown_Click);
+            // 
+            // btPrint
+            // 
+            this.btPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btPrint.Image = global::hardWareViewer.Properties.Resources.print;
+            this.btPrint.Location = new System.Drawing.Point(63, 419);
+            this.btPrint.Name = "btPrint";
+            this.btPrint.Size = new System.Drawing.Size(32, 32);
+            this.btPrint.TabIndex = 51;
+            this.toolTip1.SetToolTip(this.btPrint, "Печать");
+            this.btPrint.UseVisualStyleBackColor = true;
+            this.btPrint.Click += new System.EventHandler(this.btPrint_Click);
+            // 
+            // btNextStatus
+            // 
+            this.btNextStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btNextStatus.Image = global::hardWareViewer.Properties.Resources.old_edit_redo;
+            this.btNextStatus.Location = new System.Drawing.Point(394, 419);
+            this.btNextStatus.Name = "btNextStatus";
+            this.btNextStatus.Size = new System.Drawing.Size(32, 32);
+            this.btNextStatus.TabIndex = 52;
+            this.toolTip1.SetToolTip(this.btNextStatus, "Подтвердить акт списания");
+            this.btNextStatus.UseVisualStyleBackColor = true;
+            this.btNextStatus.Click += new System.EventHandler(this.btNextStatus_Click);
+            // 
+            // btView
+            // 
+            this.btView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btView.Image = global::hardWareViewer.Properties.Resources.eye_quick_view;
+            this.btView.Location = new System.Drawing.Point(688, 419);
+            this.btView.Name = "btView";
+            this.btView.Size = new System.Drawing.Size(32, 32);
+            this.btView.TabIndex = 53;
+            this.toolTip1.SetToolTip(this.btView, "Просмотр");
+            this.btView.UseVisualStyleBackColor = true;
+            this.btView.Click += new System.EventHandler(this.btView_Click);
+            // 
             // frmJournalActWriteOff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 465);
+            this.ClientSize = new System.Drawing.Size(907, 461);
             this.ControlBox = false;
             this.Controls.Add(this.btView);
             this.Controls.Add(this.btDown);

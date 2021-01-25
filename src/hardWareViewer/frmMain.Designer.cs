@@ -35,6 +35,7 @@
             this.tsmiJournalActInventory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiJournalActWriteOff = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiListHardware = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiContolScaner = new System.Windows.Forms.ToolStripMenuItem();
             this.справочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDirectoryResponsible = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDirectoryPlaceHardWare = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,8 +45,13 @@
             this.tsmiDirectoryObject = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiContolScaner = new System.Windows.Forms.ToolStripMenuItem();
+            this.ssConnections = new System.Windows.Forms.StatusStrip();
+            this.tslMainConnect = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tslAddConnect = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tslAdd2Connect = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tcMain = new hardWareViewer.TabControlEx();
             this.menuStrip1.SuspendLayout();
+            this.ssConnections.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -57,7 +63,7 @@
             this.tsmiExit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(950, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1224, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -78,6 +84,7 @@
             // 
             this.tsmiJournalEstimates.Name = "tsmiJournalEstimates";
             this.tsmiJournalEstimates.Size = new System.Drawing.Size(410, 22);
+            this.tsmiJournalEstimates.Tag = "frmJournalEstimates";
             this.tsmiJournalEstimates.Text = "Журнал смет";
             this.tsmiJournalEstimates.Click += new System.EventHandler(this.tsmiJournalEstimates_Click);
             // 
@@ -85,6 +92,7 @@
             // 
             this.tsmiJournalActReceivingTransfer.Name = "tsmiJournalActReceivingTransfer";
             this.tsmiJournalActReceivingTransfer.Size = new System.Drawing.Size(410, 22);
+            this.tsmiJournalActReceivingTransfer.Tag = "frmJournalActReceivingTransfer";
             this.tsmiJournalActReceivingTransfer.Text = "Журнал актов приемки передачи материальной ответственности";
             this.tsmiJournalActReceivingTransfer.Click += new System.EventHandler(this.tsmiJournalActReceivingTransfer_Click);
             // 
@@ -106,8 +114,16 @@
             // 
             this.tsmiListHardware.Name = "tsmiListHardware";
             this.tsmiListHardware.Size = new System.Drawing.Size(410, 22);
+            this.tsmiListHardware.Tag = "frmListHardware";
             this.tsmiListHardware.Text = "Список оборудования";
             this.tsmiListHardware.Click += new System.EventHandler(this.tsmiListHardware_Click);
+            // 
+            // tsmiContolScaner
+            // 
+            this.tsmiContolScaner.Name = "tsmiContolScaner";
+            this.tsmiContolScaner.Size = new System.Drawing.Size(410, 22);
+            this.tsmiContolScaner.Text = "Учет сканеров";
+            this.tsmiContolScaner.Click += new System.EventHandler(this.tsmiContolScaner_Click);
             // 
             // справочникиToolStripMenuItem
             // 
@@ -169,6 +185,7 @@
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.настройкиToolStripMenuItem.Text = "Настройки";
+            this.настройкиToolStripMenuItem.Visible = false;
             // 
             // tsmiExit
             // 
@@ -177,29 +194,74 @@
             this.tsmiExit.Text = "Выход";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
-            // tsmiContolScaner
+            // ssConnections
             // 
-            this.tsmiContolScaner.Name = "tsmiContolScaner";
-            this.tsmiContolScaner.Size = new System.Drawing.Size(410, 22);
-            this.tsmiContolScaner.Text = "Учет сканеров";
-            this.tsmiContolScaner.Click += new System.EventHandler(this.tsmiContolScaner_Click);
+            this.ssConnections.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tslMainConnect,
+            this.tslAddConnect,
+            this.tslAdd2Connect});
+            this.ssConnections.Location = new System.Drawing.Point(0, 601);
+            this.ssConnections.Name = "ssConnections";
+            this.ssConnections.Size = new System.Drawing.Size(1224, 22);
+            this.ssConnections.TabIndex = 0;
+            this.ssConnections.Text = "statusStrip1";
+            // 
+            // tslMainConnect
+            // 
+            this.tslMainConnect.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.tslMainConnect.Name = "tslMainConnect";
+            this.tslMainConnect.Size = new System.Drawing.Size(4, 17);
+            // 
+            // tslAddConnect
+            // 
+            this.tslAddConnect.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
+            this.tslAddConnect.Name = "tslAddConnect";
+            this.tslAddConnect.Size = new System.Drawing.Size(4, 17);
+            // 
+            // tslAdd2Connect
+            // 
+            this.tslAdd2Connect.Name = "tslAdd2Connect";
+            this.tslAdd2Connect.Size = new System.Drawing.Size(0, 17);
+            // 
+            // tcMain
+            // 
+            this.tcMain.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.tcMain.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tcMain.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tcMain.ItemSize = new System.Drawing.Size(0, 18);
+            this.tcMain.Location = new System.Drawing.Point(0, 581);
+            this.tcMain.Multiline = true;
+            this.tcMain.Name = "tcMain";
+            this.tcMain.Padding = new System.Drawing.Point(10, 0);
+            this.tcMain.SelectedIndex = 0;
+            this.tcMain.Size = new System.Drawing.Size(1224, 20);
+            this.tcMain.TabIndex = 3;
+            this.tcMain.SelectedIndexChanged += new System.EventHandler(this.tcMain_SelectedIndexChanged);
+            this.tcMain.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.tcMain_ControlRemoved);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 459);
+            this.ClientSize = new System.Drawing.Size(1224, 623);
+            this.Controls.Add(this.tcMain);
+            this.Controls.Add(this.ssConnections);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.DoubleBuffered = true;
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(975, 650);
             this.Name = "frmMain";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Resize += new System.EventHandler(this.Main_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.ssConnections.ResumeLayout(false);
+            this.ssConnections.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,6 +286,11 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiListHardware;
         private System.Windows.Forms.ToolStripMenuItem tsmiDirectoryObject;
         private System.Windows.Forms.ToolStripMenuItem tsmiContolScaner;
+        private System.Windows.Forms.StatusStrip ssConnections;
+        private System.Windows.Forms.ToolStripStatusLabel tslMainConnect;
+        private System.Windows.Forms.ToolStripStatusLabel tslAddConnect;
+        private System.Windows.Forms.ToolStripStatusLabel tslAdd2Connect;
+        private TabControlEx tcMain;
     }
 }
 

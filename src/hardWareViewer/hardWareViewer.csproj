@@ -15,7 +15,7 @@
     </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -282,6 +283,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="listHardware\frmListPreFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="listHardware\frmListPreFilter.Designer.cs">
+      <DependentUpon>frmListPreFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="listHardware\frmMOLChange.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -379,6 +386,9 @@
     </Compile>
     <Compile Include="scaners\frmWahKey.Designer.cs">
       <DependentUpon>frmWahKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabCtrlEx.cs">
+      <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="directoryHardWareAndComponents\frmAddComponents.resx">
       <DependentUpon>frmAddComponents.cs</DependentUpon>
@@ -478,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="journalEstimates\frmJournalEstimates.resx">
       <DependentUpon>frmJournalEstimates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listHardware\frmListPreFilter.resx">
+      <DependentUpon>frmListPreFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="listHardware\frmMOLChange.resx">
       <DependentUpon>frmMOLChange.cs</DependentUpon>

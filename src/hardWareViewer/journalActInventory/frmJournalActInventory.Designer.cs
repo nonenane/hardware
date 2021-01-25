@@ -78,7 +78,6 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(433, 16);
             this.label3.Name = "label3";
@@ -106,7 +105,6 @@
             // 
             // cbStatus
             // 
-            this.cbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatus.FormattingEnabled = true;
             this.cbStatus.Location = new System.Drawing.Point(483, 12);
@@ -138,7 +136,7 @@
             this.btAddDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btAddDoc.Enabled = false;
             this.btAddDoc.Image = global::hardWareViewer.Properties.Resources.folder_add;
-            this.btAddDoc.Location = new System.Drawing.Point(800, 426);
+            this.btAddDoc.Location = new System.Drawing.Point(800, 455);
             this.btAddDoc.Name = "btAddDoc";
             this.btAddDoc.Size = new System.Drawing.Size(32, 32);
             this.btAddDoc.TabIndex = 37;
@@ -149,7 +147,7 @@
             // 
             this.btClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btClose.Image = global::hardWareViewer.Properties.Resources.door_out;
-            this.btClose.Location = new System.Drawing.Point(958, 464);
+            this.btClose.Location = new System.Drawing.Point(958, 493);
             this.btClose.Name = "btClose";
             this.btClose.Size = new System.Drawing.Size(32, 32);
             this.btClose.TabIndex = 36;
@@ -161,7 +159,7 @@
             this.btAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btAdd.Enabled = false;
             this.btAdd.Image = global::hardWareViewer.Properties.Resources.document_add;
-            this.btAdd.Location = new System.Drawing.Point(882, 426);
+            this.btAdd.Location = new System.Drawing.Point(882, 455);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(32, 32);
             this.btAdd.TabIndex = 32;
@@ -173,7 +171,7 @@
             this.btEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btEdit.Enabled = false;
             this.btEdit.Image = global::hardWareViewer.Properties.Resources.edit;
-            this.btEdit.Location = new System.Drawing.Point(920, 426);
+            this.btEdit.Location = new System.Drawing.Point(920, 455);
             this.btEdit.Name = "btEdit";
             this.btEdit.Size = new System.Drawing.Size(32, 32);
             this.btEdit.TabIndex = 33;
@@ -185,7 +183,7 @@
             this.btDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDel.Enabled = false;
             this.btDel.Image = global::hardWareViewer.Properties.Resources.document_delete;
-            this.btDel.Location = new System.Drawing.Point(958, 426);
+            this.btDel.Location = new System.Drawing.Point(958, 455);
             this.btDel.Name = "btDel";
             this.btDel.Size = new System.Drawing.Size(32, 32);
             this.btDel.TabIndex = 34;
@@ -197,7 +195,7 @@
             this.pNotAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pNotAll.BackColor = System.Drawing.Color.Coral;
             this.pNotAll.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pNotAll.Location = new System.Drawing.Point(188, 433);
+            this.pNotAll.Location = new System.Drawing.Point(177, 462);
             this.pNotAll.Name = "pNotAll";
             this.pNotAll.Size = new System.Drawing.Size(19, 19);
             this.pNotAll.TabIndex = 39;
@@ -206,7 +204,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(213, 436);
+            this.label4.Location = new System.Drawing.Point(202, 465);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 13);
             this.label4.TabIndex = 38;
@@ -214,9 +212,9 @@
             // 
             // btDelDate
             // 
-            this.btDelDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btDelDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btDelDate.Image = global::hardWareViewer.Properties.Resources.document_delete;
-            this.btDelDate.Location = new System.Drawing.Point(141, 426);
+            this.btDelDate.Location = new System.Drawing.Point(130, 455);
             this.btDelDate.Name = "btDelDate";
             this.btDelDate.Size = new System.Drawing.Size(32, 32);
             this.btDelDate.TabIndex = 34;
@@ -225,9 +223,9 @@
             // 
             // btAddDate
             // 
-            this.btAddDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btAddDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btAddDate.Image = global::hardWareViewer.Properties.Resources.document_add;
-            this.btAddDate.Location = new System.Drawing.Point(103, 426);
+            this.btAddDate.Location = new System.Drawing.Point(92, 455);
             this.btAddDate.Name = "btAddDate";
             this.btAddDate.Size = new System.Drawing.Size(32, 32);
             this.btAddDate.TabIndex = 32;
@@ -272,7 +270,7 @@
             this.dgvData.ReadOnly = true;
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(802, 321);
+            this.dgvData.Size = new System.Drawing.Size(802, 356);
             this.dgvData.TabIndex = 40;
             this.dgvData.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseDoubleClick);
             this.dgvData.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvData_RowPostPaint);
@@ -323,9 +321,8 @@
             this.dgvDateInventory.AllowUserToAddRows = false;
             this.dgvDateInventory.AllowUserToDeleteRows = false;
             this.dgvDateInventory.AllowUserToResizeRows = false;
-            this.dgvDateInventory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDateInventory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvDateInventory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -352,7 +349,7 @@
             this.dgvDateInventory.ReadOnly = true;
             this.dgvDateInventory.RowHeadersVisible = false;
             this.dgvDateInventory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDateInventory.Size = new System.Drawing.Size(156, 321);
+            this.dgvDateInventory.Size = new System.Drawing.Size(156, 356);
             this.dgvDateInventory.TabIndex = 40;
             this.dgvDateInventory.CurrentCellChanged += new System.EventHandler(this.dgvDateInventory_CurrentCellChanged);
             // 
@@ -365,7 +362,6 @@
             // 
             // cbResponsibles
             // 
-            this.cbResponsibles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbResponsibles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbResponsibles.FormattingEnabled = true;
             this.cbResponsibles.Location = new System.Drawing.Point(802, 39);
@@ -376,7 +372,6 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(712, 42);
             this.label5.Name = "label5";
@@ -386,7 +381,6 @@
             // 
             // cbLocation
             // 
-            this.cbLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocation.FormattingEnabled = true;
             this.cbLocation.Location = new System.Drawing.Point(802, 12);
@@ -397,7 +391,6 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(703, 16);
             this.label6.Name = "label6";
@@ -423,7 +416,8 @@
             // 
             // btCloseAct
             // 
-            this.btCloseAct.Location = new System.Drawing.Point(682, 420);
+            this.btCloseAct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btCloseAct.Location = new System.Drawing.Point(685, 455);
             this.btCloseAct.Name = "btCloseAct";
             this.btCloseAct.Size = new System.Drawing.Size(98, 32);
             this.btCloseAct.TabIndex = 42;

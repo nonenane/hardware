@@ -128,7 +128,7 @@ namespace hardWareViewer
 
             DataTable dtLocation = readSQL.getLocation();
             dtLocation.Columns.Add(col);
-            dtLocation.Rows.Add(-1, "Все", true, 0);
+            dtLocation.Rows.Add(-1, "Все", true, 0, "", 0);
             dtLocation.DefaultView.Sort = "main asc";
             cbLocation.DataSource = dtLocation;
             cbLocation.DisplayMember = "cName";

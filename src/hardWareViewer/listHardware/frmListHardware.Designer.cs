@@ -81,6 +81,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.tbNumberSZ = new System.Windows.Forms.TextBox();
+            this.pScane = new System.Windows.Forms.Panel();
+            this.pUnemploy = new System.Windows.Forms.Panel();
+            this.chbScan = new System.Windows.Forms.CheckBox();
+            this.chbUnemploy = new System.Windows.Forms.CheckBox();
+            this.tbObject = new System.Windows.Forms.TextBox();
+            this.tbNameHardWare = new System.Windows.Forms.TextBox();
+            this.tbPlace = new System.Windows.Forms.TextBox();
+            this.tbResponsibleName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDays)).BeginInit();
@@ -125,7 +133,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(860, 12);
+            this.label3.Location = new System.Drawing.Point(875, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 37;
@@ -136,7 +144,7 @@
             this.cbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatus.FormattingEnabled = true;
-            this.cbStatus.Location = new System.Drawing.Point(910, 8);
+            this.cbStatus.Location = new System.Drawing.Point(925, 8);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(188, 21);
             this.cbStatus.TabIndex = 36;
@@ -146,7 +154,7 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(567, 12);
+            this.label6.Location = new System.Drawing.Point(582, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(98, 13);
             this.label6.TabIndex = 40;
@@ -156,7 +164,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(576, 38);
+            this.label5.Location = new System.Drawing.Point(591, 38);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 41;
@@ -167,7 +175,7 @@
             this.cbLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocation.FormattingEnabled = true;
-            this.cbLocation.Location = new System.Drawing.Point(666, 8);
+            this.cbLocation.Location = new System.Drawing.Point(681, 8);
             this.cbLocation.Name = "cbLocation";
             this.cbLocation.Size = new System.Drawing.Size(188, 21);
             this.cbLocation.TabIndex = 38;
@@ -178,7 +186,7 @@
             this.cbResponsibles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbResponsibles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbResponsibles.FormattingEnabled = true;
-            this.cbResponsibles.Location = new System.Drawing.Point(666, 35);
+            this.cbResponsibles.Location = new System.Drawing.Point(681, 35);
             this.cbResponsibles.Name = "cbResponsibles";
             this.cbResponsibles.Size = new System.Drawing.Size(188, 21);
             this.cbResponsibles.TabIndex = 39;
@@ -229,11 +237,12 @@
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(1136, 270);
+            this.dgvData.Size = new System.Drawing.Size(1150, 272);
             this.dgvData.TabIndex = 52;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
             this.dgvData.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvData_CellMouseClick);
             this.dgvData.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvData_CellMouseDoubleClick);
+            this.dgvData.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvData_ColumnWidthChanged);
             this.dgvData.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvData_RowPostPaint);
             this.dgvData.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvData_RowPrePaint);
             this.dgvData.SelectionChanged += new System.EventHandler(this.dgvData_SelectionChanged);
@@ -275,7 +284,7 @@
             // 
             // LocationComment
             // 
-            this.LocationComment.DataPropertyName = "LocationComment";
+            this.LocationComment.DataPropertyName = "nameObject";
             this.LocationComment.HeaderText = "Объект";
             this.LocationComment.Name = "LocationComment";
             this.LocationComment.ReadOnly = true;
@@ -320,6 +329,7 @@
             this.cScan.MinimumWidth = 85;
             this.cScan.Name = "cScan";
             this.cScan.ReadOnly = true;
+            this.cScan.Visible = false;
             this.cScan.Width = 85;
             // 
             // cDateCreate
@@ -374,7 +384,7 @@
             // 
             this.btUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btUpdate.Image = global::hardWareViewer.Properties.Resources.reload_8055;
-            this.btUpdate.Location = new System.Drawing.Point(1115, 12);
+            this.btUpdate.Location = new System.Drawing.Point(1130, 12);
             this.btUpdate.Name = "btUpdate";
             this.btUpdate.Size = new System.Drawing.Size(32, 32);
             this.btUpdate.TabIndex = 54;
@@ -384,7 +394,8 @@
             // 
             // btAdded
             // 
-            this.btAdded.Location = new System.Drawing.Point(377, 385);
+            this.btAdded.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btAdded.Location = new System.Drawing.Point(494, 396);
             this.btAdded.Name = "btAdded";
             this.btAdded.Size = new System.Drawing.Size(98, 40);
             this.btAdded.TabIndex = 59;
@@ -394,7 +405,8 @@
             // 
             // btEdited
             // 
-            this.btEdited.Location = new System.Drawing.Point(481, 385);
+            this.btEdited.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btEdited.Location = new System.Drawing.Point(598, 396);
             this.btEdited.Name = "btEdited";
             this.btEdited.Size = new System.Drawing.Size(98, 40);
             this.btEdited.TabIndex = 60;
@@ -404,7 +416,8 @@
             // 
             // btDelete
             // 
-            this.btDelete.Location = new System.Drawing.Point(585, 385);
+            this.btDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btDelete.Location = new System.Drawing.Point(702, 396);
             this.btDelete.Name = "btDelete";
             this.btDelete.Size = new System.Drawing.Size(98, 40);
             this.btDelete.TabIndex = 61;
@@ -414,7 +427,8 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(537, 431);
+            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox4.Location = new System.Drawing.Point(531, 452);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 20);
             this.textBox4.TabIndex = 67;
@@ -424,7 +438,7 @@
             // 
             this.btViewComponents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btViewComponents.Image = global::hardWareViewer.Properties.Resources.eye_quick_view;
-            this.btViewComponents.Location = new System.Drawing.Point(1039, 432);
+            this.btViewComponents.Location = new System.Drawing.Point(1054, 445);
             this.btViewComponents.Name = "btViewComponents";
             this.btViewComponents.Size = new System.Drawing.Size(32, 32);
             this.btViewComponents.TabIndex = 63;
@@ -437,7 +451,7 @@
             this.btSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSelect.Enabled = false;
             this.btSelect.Image = global::hardWareViewer.Properties.Resources.Select;
-            this.btSelect.Location = new System.Drawing.Point(1077, 432);
+            this.btSelect.Location = new System.Drawing.Point(1092, 445);
             this.btSelect.Name = "btSelect";
             this.btSelect.Size = new System.Drawing.Size(32, 32);
             this.btSelect.TabIndex = 64;
@@ -448,7 +462,7 @@
             // btPrint
             // 
             this.btPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btPrint.Location = new System.Drawing.Point(1077, 432);
+            this.btPrint.Location = new System.Drawing.Point(1092, 445);
             this.btPrint.Name = "btPrint";
             this.btPrint.Size = new System.Drawing.Size(32, 32);
             this.btPrint.TabIndex = 65;
@@ -460,7 +474,7 @@
             // 
             this.btAddDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btAddDoc.Image = global::hardWareViewer.Properties.Resources.folder_add;
-            this.btAddDoc.Location = new System.Drawing.Point(1115, 393);
+            this.btAddDoc.Location = new System.Drawing.Point(1130, 406);
             this.btAddDoc.Name = "btAddDoc";
             this.btAddDoc.Size = new System.Drawing.Size(32, 32);
             this.btAddDoc.TabIndex = 66;
@@ -472,17 +486,19 @@
             // 
             this.btClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btClose.Image = global::hardWareViewer.Properties.Resources.door_out;
-            this.btClose.Location = new System.Drawing.Point(1115, 432);
+            this.btClose.Location = new System.Drawing.Point(1130, 445);
             this.btClose.Name = "btClose";
             this.btClose.Size = new System.Drawing.Size(32, 32);
             this.btClose.TabIndex = 62;
             this.toolTip1.SetToolTip(this.btClose, "Выход");
             this.btClose.UseVisualStyleBackColor = true;
+            this.btClose.Visible = false;
             this.btClose.Click += new System.EventHandler(this.btClose_Click);
             // 
             // printToExcel
             // 
-            this.printToExcel.Location = new System.Drawing.Point(12, 385);
+            this.printToExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.printToExcel.Location = new System.Drawing.Point(12, 398);
             this.printToExcel.Name = "printToExcel";
             this.printToExcel.Size = new System.Drawing.Size(75, 23);
             this.printToExcel.TabIndex = 68;
@@ -498,7 +514,7 @@
             // 
             this.btReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btReport.Image = global::hardWareViewer.Properties.Resources.print;
-            this.btReport.Location = new System.Drawing.Point(1001, 432);
+            this.btReport.Location = new System.Drawing.Point(1016, 445);
             this.btReport.Name = "btReport";
             this.btReport.Size = new System.Drawing.Size(32, 32);
             this.btReport.TabIndex = 69;
@@ -510,7 +526,7 @@
             // 
             this.chbDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chbDays.AutoSize = true;
-            this.chbDays.Location = new System.Drawing.Point(21, 423);
+            this.chbDays.Location = new System.Drawing.Point(21, 436);
             this.chbDays.Name = "chbDays";
             this.chbDays.Size = new System.Drawing.Size(132, 17);
             this.chbDays.TabIndex = 70;
@@ -521,7 +537,7 @@
             // nudDays
             // 
             this.nudDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.nudDays.Location = new System.Drawing.Point(159, 422);
+            this.nudDays.Location = new System.Drawing.Point(159, 435);
             this.nudDays.Maximum = new decimal(new int[] {
             999,
             0,
@@ -536,7 +552,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(209, 426);
+            this.label1.Location = new System.Drawing.Point(209, 439);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 72;
@@ -547,23 +563,24 @@
             this.cmsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.отчетПоИзменениюВОборудованииToolStripMenuItem});
             this.cmsMenu.Name = "cmsMenu";
-            this.cmsMenu.Size = new System.Drawing.Size(283, 26);
+            this.cmsMenu.Size = new System.Drawing.Size(266, 26);
             // 
             // отчетПоИзменениюВОборудованииToolStripMenuItem
             // 
             this.отчетПоИзменениюВОборудованииToolStripMenuItem.Name = "отчетПоИзменениюВОборудованииToolStripMenuItem";
-            this.отчетПоИзменениюВОборудованииToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.отчетПоИзменениюВОборудованииToolStripMenuItem.Size = new System.Drawing.Size(265, 22);
             this.отчетПоИзменениюВОборудованииToolStripMenuItem.Text = "Отчет по изменению в оборудовании";
             this.отчетПоИзменениюВОборудованииToolStripMenuItem.Click += new System.EventHandler(this.ОтчетПоИзменениюВОборудованииToolStripMenuItem_Click);
             // 
             // btMOLChange
             // 
+            this.btMOLChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btMOLChange.Enabled = false;
-            this.btMOLChange.Location = new System.Drawing.Point(689, 385);
+            this.btMOLChange.Location = new System.Drawing.Point(806, 396);
             this.btMOLChange.Name = "btMOLChange";
             this.btMOLChange.Size = new System.Drawing.Size(98, 40);
             this.btMOLChange.TabIndex = 73;
-            this.btMOLChange.Text = "Изменить МОЛ для выбранных";
+            this.btMOLChange.Text = "Изменения выбранных";
             this.btMOLChange.UseVisualStyleBackColor = true;
             this.btMOLChange.Click += new System.EventHandler(this.btMOLChange_Click);
             // 
@@ -572,7 +589,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(21, 447);
+            this.panel1.Location = new System.Drawing.Point(21, 460);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(21, 21);
             this.panel1.TabIndex = 74;
@@ -581,7 +598,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 451);
+            this.label2.Location = new System.Drawing.Point(48, 464);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(186, 13);
             this.label2.TabIndex = 75;
@@ -597,12 +614,94 @@
             this.tbNumberSZ.TextChanged += new System.EventHandler(this.tbNumber_TextChanged);
             this.tbNumberSZ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNumberSZ_KeyPress);
             // 
+            // pScane
+            // 
+            this.pScane.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pScane.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(231)))), ((int)(((byte)(255)))));
+            this.pScane.Location = new System.Drawing.Point(267, 407);
+            this.pScane.Name = "pScane";
+            this.pScane.Size = new System.Drawing.Size(19, 19);
+            this.pScane.TabIndex = 77;
+            // 
+            // pUnemploy
+            // 
+            this.pUnemploy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pUnemploy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
+            this.pUnemploy.Location = new System.Drawing.Point(267, 434);
+            this.pUnemploy.Name = "pUnemploy";
+            this.pUnemploy.Size = new System.Drawing.Size(19, 19);
+            this.pUnemploy.TabIndex = 77;
+            // 
+            // chbScan
+            // 
+            this.chbScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chbScan.AutoSize = true;
+            this.chbScan.Location = new System.Drawing.Point(292, 408);
+            this.chbScan.Name = "chbScan";
+            this.chbScan.Size = new System.Drawing.Size(51, 17);
+            this.chbScan.TabIndex = 78;
+            this.chbScan.Text = "Скан";
+            this.chbScan.UseVisualStyleBackColor = true;
+            this.chbScan.CheckedChanged += new System.EventHandler(this.chbScan_CheckedChanged);
+            // 
+            // chbUnemploy
+            // 
+            this.chbUnemploy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chbUnemploy.AutoSize = true;
+            this.chbUnemploy.Location = new System.Drawing.Point(292, 435);
+            this.chbUnemploy.Name = "chbUnemploy";
+            this.chbUnemploy.Size = new System.Drawing.Size(139, 17);
+            this.chbUnemploy.TabIndex = 78;
+            this.chbUnemploy.Text = "Уволенный сотрудник";
+            this.chbUnemploy.UseVisualStyleBackColor = true;
+            this.chbUnemploy.CheckedChanged += new System.EventHandler(this.chbScan_CheckedChanged);
+            // 
+            // tbObject
+            // 
+            this.tbObject.Location = new System.Drawing.Point(452, 81);
+            this.tbObject.Name = "tbObject";
+            this.tbObject.Size = new System.Drawing.Size(125, 20);
+            this.tbObject.TabIndex = 79;
+            this.tbObject.TextChanged += new System.EventHandler(this.tbNumber_TextChanged);
+            // 
+            // tbNameHardWare
+            // 
+            this.tbNameHardWare.Location = new System.Drawing.Point(583, 81);
+            this.tbNameHardWare.Name = "tbNameHardWare";
+            this.tbNameHardWare.Size = new System.Drawing.Size(125, 20);
+            this.tbNameHardWare.TabIndex = 80;
+            this.tbNameHardWare.TextChanged += new System.EventHandler(this.tbNumber_TextChanged);
+            // 
+            // tbPlace
+            // 
+            this.tbPlace.Location = new System.Drawing.Point(714, 81);
+            this.tbPlace.Name = "tbPlace";
+            this.tbPlace.Size = new System.Drawing.Size(125, 20);
+            this.tbPlace.TabIndex = 81;
+            this.tbPlace.TextChanged += new System.EventHandler(this.tbNumber_TextChanged);
+            // 
+            // tbResponsibleName
+            // 
+            this.tbResponsibleName.Location = new System.Drawing.Point(845, 81);
+            this.tbResponsibleName.Name = "tbResponsibleName";
+            this.tbResponsibleName.Size = new System.Drawing.Size(125, 20);
+            this.tbResponsibleName.TabIndex = 82;
+            this.tbResponsibleName.TextChanged += new System.EventHandler(this.tbNumber_TextChanged);
+            // 
             // frmListHardware
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1156, 470);
+            this.ClientSize = new System.Drawing.Size(1174, 490);
             this.ControlBox = false;
+            this.Controls.Add(this.tbResponsibleName);
+            this.Controls.Add(this.tbPlace);
+            this.Controls.Add(this.tbNameHardWare);
+            this.Controls.Add(this.tbObject);
+            this.Controls.Add(this.chbUnemploy);
+            this.Controls.Add(this.chbScan);
+            this.Controls.Add(this.pUnemploy);
+            this.Controls.Add(this.pScane);
             this.Controls.Add(this.tbNumberSZ);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
@@ -688,6 +787,13 @@
         private System.Windows.Forms.ContextMenuStrip cmsMenu;
         private System.Windows.Forms.ToolStripMenuItem отчетПоИзменениюВОборудованииToolStripMenuItem;
         private System.Windows.Forms.Button btMOLChange;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbNumberSZ;
+        private System.Windows.Forms.Panel pScane;
+        private System.Windows.Forms.Panel pUnemploy;
+        private System.Windows.Forms.CheckBox chbScan;
+        private System.Windows.Forms.CheckBox chbUnemploy;
         private System.Windows.Forms.DataGridViewCheckBoxColumn cSelect;
         private System.Windows.Forms.DataGridViewTextBoxColumn cNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn cEAN;
@@ -701,8 +807,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cDateCreate;
         private System.Windows.Forms.DataGridViewTextBoxColumn cDateEdit;
         private System.Windows.Forms.DataGridViewTextBoxColumn cNumCZ;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbNumberSZ;
+        private System.Windows.Forms.TextBox tbObject;
+        private System.Windows.Forms.TextBox tbNameHardWare;
+        private System.Windows.Forms.TextBox tbPlace;
+        private System.Windows.Forms.TextBox tbResponsibleName;
     }
 }

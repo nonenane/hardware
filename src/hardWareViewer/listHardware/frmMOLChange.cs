@@ -19,6 +19,8 @@ namespace hardWareViewer.listHardware
             HardwareRows = HR;
             InitializeComponent();
             DataTable dtListResp = readSQL.getListResponsibles(1);
+            dtListResp.DefaultView.RowFilter = "isActive = 1";
+            dtListResp = dtListResp.DefaultView.ToTable().Copy();
             foreach (DataRow r in HardwareRows)
             {
                 DataRow[] tmp = dtListResp.Select("id = " + r["id_Responsible"].ToString());
@@ -32,6 +34,13 @@ namespace hardWareViewer.listHardware
             cbResponsible.ValueMember = "id";
             cbResponsible.DisplayMember = "FIO";
             cbResponsible.SelectedIndex = -1;
+
+            DataTable dtLocation = readSQL.getLocation();         
+            dtLocation.DefaultView.RowFilter = "isActive = 1";         
+            cbLocation.DataSource = dtLocation;
+            cbLocation.DisplayMember = "cName";
+            cbLocation.ValueMember = "id";
+            cbLocation.SelectedIndex = -1;
         }
 
         private void btSave_Click(object sender, EventArgs e)
@@ -43,9 +52,16 @@ namespace hardWareViewer.listHardware
                 return;
             }
 
-            foreach(DataRow r in HardwareRows)
+            if (cbLocation.SelectedIndex == -1)
             {
-                readSQL.setNewPositionAdded((int)r["id"], (int)r["id_Location"],
+                MessageBox.Show("Необходимо выбрать Местоположение.", "Информирование",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            foreach (DataRow r in HardwareRows)
+            {
+                readSQL.setNewPositionAdded((int)r["id"], (int)cbLocation.SelectedValue,
                     (int)r["id_ComponentsHardware"], (int)cbResponsible.SelectedValue,
                     (int)r["TypeComponentsHardware"], (string)r["cName"],
                     (string)r["InventoryNumber"], false, r["DatePurchase"], r["WarrantyPeriod"],

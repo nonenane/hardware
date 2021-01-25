@@ -13,9 +13,7 @@ namespace hardWareViewer
     {
         public frmJournalActReceivingTransfer()
         {
-            InitializeComponent();
-            init_combobox();
-            get_data();
+            InitializeComponent();           
         }
 
         private void btAdd_Click(object sender, EventArgs e)
@@ -249,6 +247,12 @@ namespace hardWareViewer
                 }
             }
             catch { };
+        }
+
+        private void frmJournalActReceivingTransfer_Load(object sender, EventArgs e)
+        {
+            init_combobox();
+            get_data();
         }
     }
 }

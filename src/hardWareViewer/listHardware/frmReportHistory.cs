@@ -44,7 +44,7 @@ namespace hardWareViewer.listHardware
             Logging.StopFirstLevel();
 
             //reportHistory.createReport();
-            reportHistory.createReport(0, dtpStart.Value, dtpEnd.Value, cmbType.Text, (int)cmbType.SelectedValue);
+            reportHistory.createReport(0, dtpStart.Value, dtpEnd.Value, cmbType.Text, (int)cmbType.SelectedValue,null);
         }
 
         private void DtpStart_ValueChanged(object sender, EventArgs e)
